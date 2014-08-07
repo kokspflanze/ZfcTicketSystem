@@ -1,0 +1,9 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+	TicketSystem
+{% endblock title %}
+
+{% block content %}
+<a href="{{ url('ticketsystem', {'action':'new'}) }}" class="btn btn-primary"><i class="fa fa-plus"></i> new ticket</a>
+{% endblock content %}

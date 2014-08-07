@@ -1,0 +1,19 @@
+{
+	"name": "kokspflanze/ZfcTicketSystem",
+	"description": "ZendFramework TicketSystem Module",
+	"license": "BSD-3-Clause",
+	"keywords": [
+		"framework",
+		"zf2",
+		"twig",
+		"ticketsystem"
+	],
+	"homepage": "https://github.com/kokspflanze/ZfcTicketSystem",
+	"require": {
+		"php": ">=5.3.3",
+		"zf-commons/zfc-twig": "dev-master",
+		"twig/twig": "1.*",
+		"doctrine/doctrine-orm-module": "0.*",
+		"zf-commons/zfc-user-doctrine-orm": "0.*"
+	}
+}
