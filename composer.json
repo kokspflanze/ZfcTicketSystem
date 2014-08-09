@@ -9,6 +9,11 @@
 		"ticketsystem"
 	],
 	"homepage": "https://github.com/kokspflanze/ZfcTicketSystem",
+	"autoload": {
+		"psr-0": {
+			"ZfcTwig\\": "src/"
+		}
+	},
 	"require": {
 		"php": ">=5.3.3",
 		"zf-commons/zfc-twig": "dev-master",
