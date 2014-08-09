@@ -10,7 +10,7 @@ namespace ZfcTicketSystem;
 
 class Module {
 	public function getConfig() {
-		return include __DIR__ . '/config/module.config.php';
+		return include __DIR__ . '/../../config/module.config.php';
 	}
 
 	public function getAutoloaderConfig() {
@@ -41,6 +41,7 @@ class Module {
 						$oRepositoryCategory = $sm->get('Doctrine\ORM\EntityManager')->getRepository('ZfcTicketSystem\Entity\Ticketcategory');
 						$form = new Form\TicketSystem($sm->get('Doctrine\ORM\EntityManager'));
 						$form->setInputFilter(new Form\TicketSystemFilter(
+							// TODO remove pServerCMS
 							new \PServerCMS\Validator\RecordExists( $oRepositoryCategory, 'categoryId' )
 						));
 						return $form;
