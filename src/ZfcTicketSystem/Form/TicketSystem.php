@@ -29,11 +29,11 @@ class TicketSystem extends ProvidesEventsForm {
 			),
 		));
 		$this->add(array(
-			'name' => 'subject',
+			'name' => 'categoryId',
 			'type' => 'DoctrineModule\Form\Element\ObjectSelect',
 			'options' => array(
 				'object_manager'=> $entityManager,
-				'target_class'  => 'PServerCMS\Entity\Ticketcategory',
+				'target_class'  => 'ZfcTicketSystem\Entity\Ticketcategory',
 				'property'		=> 'subject',
 				'label'			=> 'Category',
 				'empty_option'  => '-- select --',
@@ -60,7 +60,7 @@ class TicketSystem extends ProvidesEventsForm {
 
 		$submitElement = new Element\Button('submit');
 		$submitElement
-			->setLabel('Register')
+			->setLabel('Submit')
 			->setAttributes(array(
 				'class' => 'btn btn-primary',
 				'type'  => 'submit',

@@ -3,14 +3,19 @@
 namespace ZfcTicketSystem\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ticketsubject
  *
  * @ORM\Table(name="ticketSubject", indexes={@ORM\Index(name="fk_ticketSubject_users1_idx", columns={"users_usrId"}), @ORM\Index(name="fk_ticketSubject_ticketCategory1_idx", columns={"ticketCategory_categoryId"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketSubject")
  */
 class Ticketsubject {
+
+	const TypeNew = 0;
+	const TypeOpen = 1;
+	const TypeClosed = 2;
 	/**
 	 * @var integer
 	 *
@@ -35,13 +40,6 @@ class Ticketsubject {
 	private $type;
 
 	/**
-	 * @var \DateTime
-	 *
-	 * @ORM\Column(name="created", type="datetime", nullable=false)
-	 */
-	private $created;
-
-	/**
 	 * @var \PServerCMS\Entity\Users
 	 *
 	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\Users")
@@ -52,17 +50,34 @@ class Ticketsubject {
 	private $usersUsrid;
 
 	/**
-	 * @var \PServerCMS\Entity\Ticketcategory
+	 * @var Ticketcategory
 	 *
-	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\Ticketcategory")
+	 * @ORM\ManyToOne(targetEntity="ZfcTicketSystem\Entity\Ticketcategory")
 	 * @ORM\JoinColumns({
 	 *   @ORM\JoinColumn(name="ticketCategory_categoryId", referencedColumnName="categoryId")
 	 * })
 	 */
 	private $ticketcategoryCategoryid;
 
+	/**
+	 * @var Ticketentry
+	 *
+	 * @ORM\OneToMany(targetEntity="ZfcTicketSystem\Entity\Ticketentry", mappedBy="subject")
+	 * @ORM\OrderBy({"created" = "desc"})
+	 */
+	private $ticketEntry;
+
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="created", type="datetime", nullable=false)
+	 */
+	private $created;
+
 	public function __construct( ) {
+		$this->type = self::TypeNew;
 		$this->created = new \DateTime();
+		$this->ticketEntry = new ArrayCollection();
 	}
 
 	/**
@@ -119,28 +134,6 @@ class Ticketsubject {
 	}
 
 	/**
-	 * Set created
-	 *
-	 * @param \DateTime $created
-	 *
-	 * @return Ticketsubject
-	 */
-	public function setCreated( $created ) {
-		$this->created = $created;
-
-		return $this;
-	}
-
-	/**
-	 * Get created
-	 *
-	 * @return \DateTime
-	 */
-	public function getCreated() {
-		return $this->created;
-	}
-
-	/**
 	 * Set usersUsrid
 	 *
 	 * @param \PServerCMS\Entity\Users $usersUsrid
@@ -165,11 +158,11 @@ class Ticketsubject {
 	/**
 	 * Set ticketcategoryCategoryid
 	 *
-	 * @param \PServerCMS\Entity\Ticketcategory $ticketcategoryCategoryid
+	 * @param \ZfcTicketSystem\Entity\Ticketcategory $ticketcategoryCategoryid
 	 *
 	 * @return Ticketsubject
 	 */
-	public function setTicketcategoryCategoryid( \PServerCMS\Entity\Ticketcategory $ticketcategoryCategoryid = null ) {
+	public function setTicketcategoryCategoryid( \ZfcTicketSystem\Entity\Ticketcategory $ticketcategoryCategoryid = null ) {
 		$this->ticketcategoryCategoryid = $ticketcategoryCategoryid;
 
 		return $this;
@@ -178,9 +171,53 @@ class Ticketsubject {
 	/**
 	 * Get ticketcategoryCategoryid
 	 *
-	 * @return \PServerCMS\Entity\Ticketcategory
+	 * @return \ZfcTicketSystem\Entity\Ticketcategory
 	 */
 	public function getTicketcategoryCategoryid() {
 		return $this->ticketcategoryCategoryid;
+	}
+
+	/**
+	 * Set ticketcategoryCategoryid
+	 *
+	 * @param Ticketentry $ticketcategoryCategoryid
+	 *
+	 * @return Ticketentry[]
+	 */
+	public function addTicketEntry( Ticketentry $ticketEntry = null ) {
+		$this->ticketEntry[] = $ticketEntry;
+
+		return $this;
+	}
+
+	/**
+	 * Get ticketcategoryCategoryid
+	 *
+	 * @return Ticketentry[]
+	 */
+	public function getTicketEntry() {
+		return $this->ticketEntry;
+	}
+
+	/**
+	 * Set created
+	 *
+	 * @param \DateTime $created
+	 *
+	 * @return Ticketsubject
+	 */
+	public function setCreated( $created ) {
+		$this->created = $created;
+
+		return $this;
+	}
+
+	/**
+	 * Get created
+	 *
+	 * @return \DateTime
+	 */
+	public function getCreated() {
+		return $this->created;
 	}
 }

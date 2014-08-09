@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
 
 class TicketCategory extends EntityRepository {
 	/**
-	 * @return \PServerCMS\Entity\Ticketcategory[]
+	 * @return \ZfcTicketSystem\Entity\Ticketcategory[]
 	 */
 	public function getActiveCategory(){
 		$oQuery = $this->createQueryBuilder('p')

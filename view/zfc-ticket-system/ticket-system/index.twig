@@ -1,0 +1,28 @@
+{% extends 'layout/layout' %}
+
+{% block title %}
+	TicketSystem
+{% endblock title %}
+
+{% block content %}
+	<a href="{{ url('zfc-ticketsystem', {'action':'new'}) }}" class="btn btn-primary"><i class="fa fa-plus"></i> new ticket</a>
+	<div class="clearfix"></div>
+	<div class="table-responsive margin-top-10">
+		<table class="table table-bordered table-hover">
+			<tr>
+				<th>Subject</th>
+				<th>Type</th>
+				<th>Created</th>
+				<th>Option</th>
+			</tr>
+			{% for iKey, oCurTicketSubject in ticketList %}
+				<tr>
+					<th>{{ oCurTicketSubject.getSubject }}</th>
+					<th>{{ oCurTicketSubject.getType }}</th>
+					<th>{{ oCurTicketSubject.getCreated|date('d.m.Y H:i') }}</th>
+					<th><a href="{{ url('zfc-ticketsystem-view', {'ticket-id':oCurTicketSubject.getTicketid}) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> View</a></th>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock content %}

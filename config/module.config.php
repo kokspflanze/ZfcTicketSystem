@@ -6,13 +6,26 @@ return array(
 			'zfc-ticketsystem' => array(
 				'type' => 'segment',
 				'options' => array(
-					'route'    => '/panel/ticket-system/[:action].html',
+					'route'    => '/panel/ticket-system/[:action]',
 					'constraints' => array(
-						'action'     => '[a-zA-Z]*',
+						'action'     => '[a-zA-Z]+',
 					),
 					'defaults' => array(
 						'controller'	=> 'ZfcTicketSystem\Controller\TicketSystem',
 						'action'		=> 'index',
+					),
+				),
+			),
+			'zfc-ticketsystem-view' => array(
+				'type' => 'segment',
+				'options' => array(
+					'route'    => '/panel/ticket-system/view/[:ticket-id].html',
+					'constraints' => array(
+						'ticket-id'     => '[0-9]+',
+					),
+					'defaults' => array(
+						'controller'	=> 'ZfcTicketSystem\Controller\TicketSystem',
+						'action'		=> 'view',
 					),
 				),
 			),
