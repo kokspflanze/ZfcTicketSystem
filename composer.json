@@ -11,7 +11,7 @@
 	"homepage": "https://github.com/kokspflanze/ZfcTicketSystem",
 	"autoload": {
 		"psr-0": {
-			"ZfcTwig\\": "src/"
+			"ZfcTicketSystem\\": "src/"
 		}
 	},
 	"require": {
