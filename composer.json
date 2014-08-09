@@ -1,7 +1,7 @@
 {
 	"name": "kokspflanze/zfc-ticket-system",
 	"description": "ZendFramework 2 TicketSystem Module",
-	"license": "BSD-3-Clause",
+	"type": "library",
 	"keywords": [
 		"framework",
 		"zf2",
@@ -14,6 +14,11 @@
 			"ZfcTicketSystem\\": "src/"
 		}
 	},
+	"authors": [
+		{
+			"name": "Oliver"
+		}
+	],
 	"require": {
 		"php": ">=5.3.3",
 		"zf-commons/zfc-twig": "dev-master",
