@@ -55,7 +55,7 @@ return array(
 			__DIR__ . '/../view',
 		),
 	),
-	'zfc-ticketsystem' => array(
+	'zfc-ticket-system' => array(
 		'auth_service' => 'user_auth_service',
 	)
 );

@@ -103,7 +103,7 @@ class TicketSystemController extends AbstractActionController {
 	protected function getAuthService() {
 		if (!$this->authService) {
 			$aConfig = $this->getServiceLocator()->get('Config');
-			$this->authService = $this->getServiceLocator()->get($aConfig['zfc-ticketsystem']['auth_service']);
+			$this->authService = $this->getServiceLocator()->get($aConfig['zfc-ticket-system']['auth_service']);
 		}
 
 		return $this->authService;
