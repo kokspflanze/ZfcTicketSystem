@@ -55,4 +55,7 @@ return array(
 			__DIR__ . '/../view',
 		),
 	),
+	'zfc-ticketsystem' => array(
+		'auth_service' => 'user_auth_service',
+	)
 );
