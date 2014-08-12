@@ -9,18 +9,16 @@
 namespace ZfcTicketSystem\Form;
 
 use ZfcBase\InputFilter\ProvidesEventsInputFilter;
-use PServerCMS\Validator\AbstractRecord;
+use Zend\ServiceManager\ServiceManager;
 
 class TicketSystemFilter extends ProvidesEventsInputFilter {
 
-	/**
-	 * @var AbstractRecord
-	 */
-	protected $usernameValidator;
+	protected $serviceManager;
+	protected $entityManager;
 
+	public function __construct( ServiceManager $serviceManager ){
 
-	public function __construct( AbstractRecord $ticketCategoryValidator ){
-		$this->setTicketCategoryValidator( $ticketCategoryValidator );
+		$this->setServiceManager($serviceManager);
 
 		$this->add(array(
 			'name'       => 'subject',
@@ -37,12 +35,18 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 			),
 		));
 
+
+
 		$this->add(array(
 			'name'       => 'categoryId',
 			'required'   => true,
-			'filters'    => array(array('name' => 'StringTrim')),
 			'validators' => array(
-				$this->getTicketCategoryValidator(),
+				array(
+					'name'    => 'InArray',
+					'options' => array(
+						'haystack' => $this->getTicketCategory(),
+					),
+				),
 			),
 		));
 
@@ -63,19 +67,45 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 	}
 
 	/**
-	 * @return AbstractRecord
-	 */
-	public function getTicketCategoryValidator()	{
-		return $this->usernameValidator;
-	}
-
-	/**
-	 * @param AbstractRecord $usernameValidator
+	 * @param ServiceManager $oServiceManager
 	 *
 	 * @return $this
 	 */
-	public function setTicketCategoryValidator($usernameValidator) {
-		$this->usernameValidator = $usernameValidator;
+	public function setServiceManager( ServiceManager $oServiceManager ) {
+		$this->serviceManager = $oServiceManager;
+
 		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function getTicketCategory(){
+		/** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $ticketCategory */
+		$ticketCategory = $this->getEntityManager()->getRepository('ZfcTicketSystem\Entity\Ticketcategory');
+		$category = $ticketCategory->getActiveCategory();
+
+		$result = array();
+		foreach($category as $entry){
+			$result[] = $entry->getCategoryid();
+		}
+		return $result;
+	}
+
+	/**
+	 * @return ServiceManager
+	 */
+	protected function getServiceManager() {
+		return $this->serviceManager;
+	}
+	/**
+	 * @return \Doctrine\ORM\EntityManager
+	 */
+	protected function getEntityManager() {
+		if (!$this->entityManager) {
+			$this->entityManager = $this->getServiceManager()->get('Doctrine\ORM\EntityManager');
+		}
+
+		return $this->entityManager;
 	}
 } 

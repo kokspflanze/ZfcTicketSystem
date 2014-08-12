@@ -40,10 +40,7 @@ class Module {
 						/** @var $oRepositoryCategory \Doctrine\Common\Persistence\ObjectRepository */
 						$oRepositoryCategory = $sm->get('Doctrine\ORM\EntityManager')->getRepository('ZfcTicketSystem\Entity\Ticketcategory');
 						$form = new Form\TicketSystem($sm->get('Doctrine\ORM\EntityManager'));
-						$form->setInputFilter(new Form\TicketSystemFilter(
-							// TODO remove pServerCMS
-							new \PServerCMS\Validator\RecordExists( $oRepositoryCategory, 'categoryId' )
-						));
+						$form->setInputFilter(new Form\TicketSystemFilter($sm));
 						return $form;
 					},
 				'zfcticketsystem_ticketsystem_entry_form' => function($sm){
