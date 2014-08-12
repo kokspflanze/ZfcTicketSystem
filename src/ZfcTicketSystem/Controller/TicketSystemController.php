@@ -9,6 +9,7 @@
 namespace ZfcTicketSystem\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 class TicketSystemController extends AbstractActionController {
 	/** @var \ZfcTicketSystem\Form\TicketSystem */
@@ -19,7 +20,9 @@ class TicketSystemController extends AbstractActionController {
 	protected $ticketEntryForm;
 
 	public function indexAction(){
-		return array('ticketList' => $this->getTicketService()->getTickets4User($this->getAuthService()->getIdentity()->getUsrid()));
+		$view = new ViewModel(array('ticketList' => $this->getTicketService()->getTickets4User($this->getAuthService()->getIdentity()->getUsrid())));
+		$view->setTemplate('zfc-ticket-system/index');
+		return $view;
 	}
 
 	public function newAction(){
@@ -33,8 +36,9 @@ class TicketSystemController extends AbstractActionController {
 				return $this->redirect()->toRoute('zfc-ticketsystem');
 			}
 		}
-
-		return array('form' => $form);
+		$view = new ViewModel(array('form' => $form));
+		$view->setTemplate('zfc-ticket-system/new');
+		return $view;
 	}
 
 	public function viewAction(){
@@ -57,11 +61,13 @@ class TicketSystemController extends AbstractActionController {
 
 		$entry = $ticketSubject->getTicketEntry();
 
-		return array(
+		$view = new ViewModel(array(
 			'form' => $form,
 			'ticket' => $ticketSubject,
 			'entry' => $entry
-		);
+		));
+		$view->setTemplate('zfc-ticket-system/view');
+		return $view;
 	}
 
 	/**

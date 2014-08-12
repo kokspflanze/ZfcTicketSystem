@@ -1,0 +1,20 @@
+<a href="<?= $this->url('zfc-ticketsystem', array('action' => 'new')) ?>" class="btn btn-primary"><i class="fa fa-plus"></i> new ticket</a>
+<div class="clearfix"></div>
+<div class="table-responsive margin-top-10">
+	<table class="table table-bordered table-hover">
+		<tr>
+			<th>Subject</th>
+			<th>Type</th>
+			<th>Created</th>
+			<th>Option</th>
+		</tr>
+		<?php foreach($this->ticketList as $oCurTicketSubject): ?>
+			<tr>
+				<th><?= $oCurTicketSubject->getSubject() ?></th>
+				<th><?= $oCurTicketSubject->getType() ?></th>
+				<th><?= $oCurTicketSubject->getCreated()->format('d.m.Y H:i') ?></th>
+				<th><a href="<?= $this->url('zfc-ticketsystem-view', array('ticket-id' => $oCurTicketSubject->getTicketid() )) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> View</a></th>
+			</tr>
+		<?php endforeach ?>
+	</table>
+</div>

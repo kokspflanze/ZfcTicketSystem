@@ -1,0 +1,6 @@
+<?php include('form_render.phtml') ?>
+
+<?php foreach($this->entry as $curEntry): ?>
+	<label><?= $curEntry->getUsersUsrid()->getUsername() ?></label><br/>
+	<?= $curEntry->getMemo() ?><br />
+<?php endforeach ?>

@@ -1,5 +1,5 @@
 <?php
-$form = $this->formWidget;
+$form = $this->form;
 $form->prepare();
 $form->setAttribute('method', 'post');
 $form->setAttribute('class', 'form-horizontal');
@@ -7,14 +7,14 @@ $form->setAttribute('class', 'form-horizontal');
 
 <?php echo $this->form()->openTag($form) ?>
 <?php foreach ($form as $element): ?>
-    <div class="form-group">
-        <?php if (!$element instanceof Zend\Form\Element\Button): ?>
-            <label class="col-sm-2 control-label"><?php echo $this->formLabel($element) ?></label>
-        <?php endif ?>
-        <?php if ($element instanceof Zend\Form\Element\Button): ?>
-            <div class="col-sm-offset-2 col-sm-10">
-                <?php echo $this->formButton($element) ?>
-            </div>
+	<div class="form-group">
+		<?php if (!$element instanceof Zend\Form\Element\Button): ?>
+			<label class="col-sm-2 control-label"><?php echo $this->formLabel($element) ?></label>
+		<?php endif ?>
+		<?php if ($element instanceof Zend\Form\Element\Button): ?>
+			<div class="col-sm-offset-2 col-sm-10">
+				<?php echo $this->formButton($element) ?>
+			</div>
 		<?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
 			<?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?>
 		<?php elseif ($element instanceof DoctrineModule\Form\Element\ObjectSelect): ?>
@@ -25,14 +25,14 @@ $form->setAttribute('class', 'form-horizontal');
 			<div class="col-sm-10">
 				<?php echo $this->formTextarea($element) . $this->formElementErrors($element) ?>
 			</div>
-        <?php else: ?>
-            <div class="col-sm-10">
-                <?php echo $this->formInput($element) . $this->formElementErrors($element) ?>
-            </div>
-        <?php endif ?>
-    </div>
+		<?php else: ?>
+			<div class="col-sm-10">
+				<?php echo $this->formInput($element) . $this->formElementErrors($element) ?>
+			</div>
+		<?php endif ?>
+	</div>
 <?php endforeach ?>
 <?php if ($this->redirect): ?>
-<input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
+	<input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
 <?php endif ?>
 <?php echo $this->form()->closeTag() ?>

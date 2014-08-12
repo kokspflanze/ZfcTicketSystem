@@ -51,6 +51,11 @@ return array(
 		),
 	),
 	'view_manager' => array(
+		'template_map' => array(
+			'zfc-ticket-system/new'		=> __DIR__ . '/../view/zfc-ticket-system/ticket-system/new.phtml',
+			'zfc-ticket-system/view'	=> __DIR__ . '/../view/zfc-ticket-system/ticket-system/view.phtml',
+			'zfc-ticket-system/index'	=> __DIR__ . '/../view/zfc-ticket-system/ticket-system/index.phtml',
+		),
 		'template_path_stack' => array(
 			__DIR__ . '/../view',
 		),
