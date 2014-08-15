@@ -37,15 +37,11 @@ class Module {
 			'factories' => array(
 				'zfcticketsystem_ticketsystem_new_form' => function($sm){
 						/** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-						/** @var $oRepositoryCategory \Doctrine\Common\Persistence\ObjectRepository */
-						$oRepositoryCategory = $sm->get('Doctrine\ORM\EntityManager')->getRepository('ZfcTicketSystem\Entity\Ticketcategory');
 						$form = new Form\TicketSystem($sm->get('Doctrine\ORM\EntityManager'));
 						$form->setInputFilter(new Form\TicketSystemFilter($sm));
 						return $form;
 					},
-				'zfcticketsystem_ticketsystem_entry_form' => function($sm){
-						/** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-						/** @var $oRepositoryCategory \Doctrine\Common\Persistence\ObjectRepository */
+				'zfcticketsystem_ticketsystem_entry_form' => function(){
 						$form = new Form\TicketEntry();
 						$form->setInputFilter(new Form\TicketEntryFilter());
 						return $form;

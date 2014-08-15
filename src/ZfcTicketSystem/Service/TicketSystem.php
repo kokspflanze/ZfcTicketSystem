@@ -115,6 +115,29 @@ class TicketSystem implements ServiceManagerAwareInterface {
 	}
 
 	/**
+	 * @return \ZfcTicketSystem\Form\TicketSystem
+	 */
+	public function getTicketSystemNewForm(){
+		if (!$this->ticketSystemNewForm) {
+			$this->ticketSystemNewForm = $this->getServiceManager()->get('zfcticketsystem_ticketsystem_new_form');
+		}
+
+		return $this->ticketSystemNewForm;
+	}
+
+	/**
+	 * @return \ZfcTicketSystem\Form\TicketEntry
+	 */
+	public function getTicketSystemEntryForm(){
+		if (!$this->ticketSystemEntryForm) {
+			$this->ticketSystemEntryForm = $this->getServiceManager()->get('zfcticketsystem_ticketsystem_entry_form');
+		}
+
+		return $this->ticketSystemEntryForm;
+	}
+
+	/**
+	 * TODO refactoring
 	 * @param $userId
 	 *
 	 * @return null|\PServerCMS\Entity\Users
@@ -143,28 +166,6 @@ class TicketSystem implements ServiceManagerAwareInterface {
 		}
 
 		return $this->entityManager;
-	}
-
-	/**
-	 * @return \ZfcTicketSystem\Form\TicketSystem
-	 */
-	protected function getTicketSystemNewForm(){
-		if (!$this->ticketSystemNewForm) {
-			$this->ticketSystemNewForm = $this->getServiceManager()->get('zfcticketsystem_ticketsystem_new_form');
-		}
-
-		return $this->ticketSystemNewForm;
-	}
-
-	/**
-	 * @return \ZfcTicketSystem\Form\TicketEntry
-	 */
-	protected function getTicketSystemEntryForm(){
-		if (!$this->ticketSystemEntryForm) {
-			$this->ticketSystemEntryForm = $this->getServiceManager()->get('zfcticketsystem_ticketsystem_entry_form');
-		}
-
-		return $this->ticketSystemEntryForm;
 	}
 
 } 
