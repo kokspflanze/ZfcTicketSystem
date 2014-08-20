@@ -29,8 +29,8 @@ class TicketSystemController extends AbstractActionController {
 
 		$form = $this->getTicketSystemNewForm();
 
-		$oRequest = $this->getRequest();
-		if($oRequest->isPost()){
+		$request = $this->getRequest();
+		if($request->isPost()){
 			$oTicketSystem = $this->getTicketService()->newTicket($this->params()->fromPost(), $this->getAuthService()->getIdentity());
 			if($oTicketSystem){
 				return $this->redirect()->toRoute('zfc-ticketsystem');
@@ -51,8 +51,8 @@ class TicketSystemController extends AbstractActionController {
 
 		$form = $this->getTicketEntryForm();
 
-		$oRequest = $this->getRequest();
-		if($oRequest->isPost()){
+		$request = $this->getRequest();
+		if($request->isPost()){
 			$oTicketSystem = $this->getTicketService()->newEntry($this->params()->fromPost(), $this->getAuthService()->getIdentity(), $ticketSubject);
 			if($oTicketSystem){
 				return $this->redirect()->toRoute('zfc-ticketsystem-view', array('ticket-id' => $ticketId));

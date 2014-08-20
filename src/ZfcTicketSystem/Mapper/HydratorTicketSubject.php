@@ -44,13 +44,4 @@ class HydratorTicketSubject extends ClassMethods {
 		}
 		return parent::hydrate($data, $object);
 	}
-
-	protected function mapField($keyFrom, $keyTo, array $aArray) {
-		if(!isset($aArray[$keyFrom])){
-			return $aArray;
-		}
-		$aArray[$keyTo] = $aArray[$keyFrom];
-		unset($aArray[$keyFrom]);
-		return $aArray;
-	}
 } 
