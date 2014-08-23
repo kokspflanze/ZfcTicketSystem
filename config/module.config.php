@@ -6,9 +6,10 @@ return array(
 			'zfc-ticketsystem' => array(
 				'type' => 'segment',
 				'options' => array(
-					'route'    => '/panel/ticket-system/[:action]',
+					'route'    => '/panel/ticket[-:action[-:id]].html',
 					'constraints' => array(
 						'action'     => '[a-zA-Z]+',
+						'id'	     => '[0-9]+',
 					),
 					'defaults' => array(
 						'controller'	=> 'ZfcTicketSystem\Controller\TicketSystem',
@@ -16,16 +17,18 @@ return array(
 					),
 				),
 			),
-			'zfc-ticketsystem-view' => array(
+			'zfc-ticketsystem-admin' => array(
 				'type' => 'segment',
 				'options' => array(
-					'route'    => '/panel/ticket-system/view/[:ticket-id].html',
+					'route'    => '/admin/ticket[-:action[-:id]][-:type].html',
 					'constraints' => array(
-						'ticket-id'     => '[0-9]+',
+						'action'     => '[a-zA-Z]+',
+						'id'    	 => '[0-9]+',
+						'type'    	 => '[0-9]+',
 					),
 					'defaults' => array(
-						'controller'	=> 'ZfcTicketSystem\Controller\TicketSystem',
-						'action'		=> 'view',
+						'controller'	=> 'ZfcTicketSystem\Controller\Admin',
+						'action'		=> 'index',
 					),
 				),
 			),
@@ -34,6 +37,7 @@ return array(
 	'controllers' => array(
 		'invokables' => array(
 			'ZfcTicketSystem\Controller\TicketSystem' => 'ZfcTicketSystem\Controller\TicketSystemController',
+			'ZfcTicketSystem\Controller\Admin' => 'ZfcTicketSystem\Controller\AdminController',
 		),
 	),
 	'doctrine' => array(

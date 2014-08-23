@@ -35,7 +35,7 @@ class Ticketentry {
 	 *   @ORM\JoinColumn(name="users_usrId", referencedColumnName="usrId")
 	 * })
 	 */
-	private $usersUsrid;
+	private $user;
 
 	/**
 	 * @var integer
@@ -88,25 +88,25 @@ class Ticketentry {
 	}
 
 	/**
-	 * Set usersUsrid
+	 * Set user
 	 *
-	 * @param \PServerCMS\Entity\Users $usersUsrid
+	 * @param \PServerCMS\Entity\Users $user
 	 *
 	 * @return Ticketentry
 	 */
-	public function setUsersUsrid( \PServerCMS\Entity\Users $usersUsrid = null ) {
-		$this->usersUsrid = $usersUsrid;
+	public function setUser( \PServerCMS\Entity\Users $user = null ) {
+		$this->user = $user;
 
 		return $this;
 	}
 
 	/**
-	 * Get usersUsrid
+	 * Get user
 	 *
 	 * @return \PServerCMS\Entity\Users
 	 */
-	public function getUsersUsrid() {
-		return $this->usersUsrid;
+	public function getUser() {
+		return $this->user;
 	}
 
 	/**

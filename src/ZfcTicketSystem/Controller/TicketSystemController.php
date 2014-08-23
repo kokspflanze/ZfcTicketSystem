@@ -8,16 +8,12 @@
 
 namespace ZfcTicketSystem\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use ZfcTicketSystem\Entity\Ticketsubject;
 
-class TicketSystemController extends AbstractActionController {
-	/** @var \ZfcTicketSystem\Form\TicketSystem */
-	protected $ticketSystemNewForm;
+class TicketSystemController extends BaseController {
 	/** @var  \ZfcTicketSystem\Service\TicketSystem */
 	protected $ticketService;
-	protected $authService;
-	protected $ticketEntryForm;
 
 	public function indexAction(){
 		$view = new ViewModel(array('ticketList' => $this->getTicketService()->getTickets4User($this->getAuthService()->getIdentity()->getUsrid())));
@@ -27,7 +23,7 @@ class TicketSystemController extends AbstractActionController {
 
 	public function newAction(){
 
-		$form = $this->getTicketSystemNewForm();
+		$form = $this->getTicketService()->getTicketSystemNewForm();
 
 		$request = $this->getRequest();
 		if($request->isPost()){
@@ -42,20 +38,21 @@ class TicketSystemController extends AbstractActionController {
 	}
 
 	public function viewAction(){
-		$ticketId = $this->params()->fromRoute('ticket-id');
-		$ticketSubject = $this->getTicketService()->getTicketSubject($this->getAuthService()->getIdentity()->getUsrid(), $ticketId);
+		$ticketId = $this->params()->fromRoute('id');
+		$ticketSubject = $this->getTicketService()->getTicketSubject($this->getAuthService()->getIdentity()->getId(), $ticketId);
 		// Fallback if not task
 		if(!$ticketSubject){
 			return $this->redirect()->toRoute('zfc-ticketsystem');
 		}
 
-		$form = $this->getTicketEntryForm();
+		$form = $this->getTicketService()->getTicketSystemEntryForm();
 
 		$request = $this->getRequest();
 		if($request->isPost()){
+			$ticketSubject->setType(Ticketsubject::TypeNew);
 			$oTicketSystem = $this->getTicketService()->newEntry($this->params()->fromPost(), $this->getAuthService()->getIdentity(), $ticketSubject);
 			if($oTicketSystem){
-				return $this->redirect()->toRoute('zfc-ticketsystem-view', array('ticket-id' => $ticketId));
+				return $this->redirect()->toRoute('zfc-ticketsystem', array('id' => $ticketId, 'action' => 'view'));
 			}
 		}
 
@@ -70,48 +67,4 @@ class TicketSystemController extends AbstractActionController {
 		return $view;
 	}
 
-	/**
-	 * @return \ZfcTicketSystem\Form\TicketSystem
-	 */
-	protected function getTicketSystemNewForm(){
-		if (!$this->ticketSystemNewForm) {
-			$this->ticketSystemNewForm = $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_new_form');
-		}
-
-		return $this->ticketSystemNewForm;
-	}
-
-	/**
-	 * @return \ZfcTicketSystem\Form\TicketEntry
-	 */
-	protected function getTicketEntryForm(){
-		if (!$this->ticketEntryForm) {
-			$this->ticketEntryForm = $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_entry_form');
-		}
-
-		return $this->ticketEntryForm;
-	}
-
-	/**
-	 * @return \ZfcTicketSystem\Service\TicketSystem
-	 */
-	protected function getTicketService(){
-		if (!$this->ticketService) {
-			$this->ticketService = $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_service');
-		}
-
-		return $this->ticketService;
-	}
-
-	/**
-	 * @return \Zend\Authentication\AuthenticationService
-	 */
-	protected function getAuthService() {
-		if (!$this->authService) {
-			$aConfig = $this->getServiceLocator()->get('Config');
-			$this->authService = $this->getServiceLocator()->get($aConfig['zfc-ticket-system']['auth_service']);
-		}
-
-		return $this->authService;
-	}
 } 

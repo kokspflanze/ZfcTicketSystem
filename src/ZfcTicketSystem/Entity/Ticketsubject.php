@@ -47,7 +47,7 @@ class Ticketsubject {
 	 *   @ORM\JoinColumn(name="users_usrId", referencedColumnName="usrId")
 	 * })
 	 */
-	private $usersUsrid;
+	private $user;
 
 	/**
 	 * @var Ticketcategory
@@ -57,7 +57,7 @@ class Ticketsubject {
 	 *   @ORM\JoinColumn(name="ticketCategory_categoryId", referencedColumnName="categoryId")
 	 * })
 	 */
-	private $ticketcategoryCategoryid;
+	private $ticketCategory;
 
 	/**
 	 * @var Ticketentry
@@ -70,6 +70,13 @@ class Ticketsubject {
 	/**
 	 * @var \DateTime
 	 *
+	 * @ORM\Column(name="last_edit", type="datetime", nullable=false)
+	 */
+	private $lastEdit;
+
+	/**
+	 * @var \DateTime
+	 *
 	 * @ORM\Column(name="created", type="datetime", nullable=false)
 	 */
 	private $created;
@@ -77,6 +84,7 @@ class Ticketsubject {
 	public function __construct( ) {
 		$this->type = self::TypeNew;
 		$this->created = new \DateTime();
+		$this->lastEdit = new \DateTime();
 		$this->ticketEntry = new ArrayCollection();
 	}
 
@@ -134,53 +142,53 @@ class Ticketsubject {
 	}
 
 	/**
-	 * Set usersUsrid
+	 * Set user
 	 *
-	 * @param \PServerCMS\Entity\Users $usersUsrid
+	 * @param \PServerCMS\Entity\Users $user
 	 *
 	 * @return Ticketsubject
 	 */
-	public function setUsersUsrid( \PServerCMS\Entity\Users $usersUsrid = null ) {
-		$this->usersUsrid = $usersUsrid;
+	public function setUser( \PServerCMS\Entity\Users $user = null ) {
+		$this->user = $user;
 
 		return $this;
 	}
 
 	/**
-	 * Get usersUsrid
+	 * Get user
 	 *
 	 * @return \PServerCMS\Entity\Users
 	 */
-	public function getUsersUsrid() {
-		return $this->usersUsrid;
+	public function getUser() {
+		return $this->user;
 	}
 
 	/**
-	 * Set ticketcategoryCategoryid
+	 * Set ticketCategory
 	 *
-	 * @param \ZfcTicketSystem\Entity\Ticketcategory $ticketcategoryCategoryid
+	 * @param \ZfcTicketSystem\Entity\Ticketcategory $ticketCategory
 	 *
 	 * @return Ticketsubject
 	 */
-	public function setTicketcategoryCategoryid( \ZfcTicketSystem\Entity\Ticketcategory $ticketcategoryCategoryid = null ) {
-		$this->ticketcategoryCategoryid = $ticketcategoryCategoryid;
+	public function setTicketCategory( \ZfcTicketSystem\Entity\Ticketcategory $ticketCategory = null ) {
+		$this->ticketCategory = $ticketCategory;
 
 		return $this;
 	}
 
 	/**
-	 * Get ticketcategoryCategoryid
+	 * Get ticketCategory
 	 *
 	 * @return \ZfcTicketSystem\Entity\Ticketcategory
 	 */
-	public function getTicketcategoryCategoryid() {
-		return $this->ticketcategoryCategoryid;
+	public function getTicketCategory() {
+		return $this->ticketCategory;
 	}
 
 	/**
-	 * Set ticketcategoryCategoryid
+	 * Set ticketCategory
 	 *
-	 * @param Ticketentry $ticketcategoryCategoryid
+	 * @param Ticketentry $ticketCategory
 	 *
 	 * @return Ticketentry[]
 	 */
@@ -191,7 +199,7 @@ class Ticketsubject {
 	}
 
 	/**
-	 * Get ticketcategoryCategoryid
+	 * Get ticketCategory
 	 *
 	 * @return Ticketentry[]
 	 */
@@ -219,5 +227,27 @@ class Ticketsubject {
 	 */
 	public function getCreated() {
 		return $this->created;
+	}
+
+	/**
+	 * Set latEdit
+	 *
+	 * @param \DateTime $lastEdit
+	 *
+	 * @return Ticketsubject
+	 */
+	public function setLastEdit( $lastEdit ) {
+		$this->lastEdit = $lastEdit;
+
+		return $this;
+	}
+
+	/**
+	 * Get latEdit
+	 *
+	 * @return \DateTime
+	 */
+	public function getLastEdit() {
+		return $this->lastEdit;
 	}
 }
