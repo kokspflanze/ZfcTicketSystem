@@ -17,6 +17,11 @@ class TicketEntry extends ProvidesEventsForm {
 	public function __construct( ) {
 		parent::__construct();
 		$this->add(array(
+			'type' => 'Zend\Form\Element\Csrf',
+			'name' => 'fdh456eh56ujzum45zkuik45zhrh'
+		));
+
+		$this->add(array(
 			'name' => 'memo',
 			'type' => 'Zend\Form\Element\Textarea',
 			'options' => array(
