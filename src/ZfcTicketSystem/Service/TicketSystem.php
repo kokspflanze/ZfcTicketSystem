@@ -8,7 +8,7 @@
 
 namespace ZfcTicketSystem\Service;
 
-use PServerCMS\Entity\Users;
+use ZfcTicketSystem\Entity\UserInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use ZfcTicketSystem\Entity\Ticketentry;
@@ -27,7 +27,7 @@ class TicketSystem implements ServiceManagerAwareInterface {
 	/** @var \ZfcTicketSystem\Form\TicketEntry */
 	protected $ticketSystemEntryForm;
 
-	public function newTicket( array $data, Users $user ){
+	public function newTicket( array $data, UserInterface $user ){
 		$form = $this->getTicketSystemNewForm();
 		$form->setHydrator(new HydratorTicketSubject());
 		$form->bind(new Ticketsubject());
@@ -51,7 +51,7 @@ class TicketSystem implements ServiceManagerAwareInterface {
 		return $ticketSubject;
 	}
 
-	public function newEntry( array $data, Users $user, Ticketsubject $subject ){
+	public function newEntry( array $data, UserInterface $user, Ticketsubject $subject ){
 		$form = $this->getTicketSystemEntryForm();
 		$form->setHydrator(new HydratorTicketEntry());
 		$form->bind(new Ticketentry());
@@ -166,10 +166,9 @@ class TicketSystem implements ServiceManagerAwareInterface {
 	}
 
 	/**
-	 * TODO refactoring
 	 * @param $userId
 	 *
-	 * @return null|\PServerCMS\Entity\Users
+	 * @return null|UserInterface
 	 */
 	protected function getUser4Id( $userId ){
 		$entityManager = $this->getEntityManager();

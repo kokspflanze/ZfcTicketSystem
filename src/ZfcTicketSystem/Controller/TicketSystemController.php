@@ -12,9 +12,6 @@ use Zend\View\Model\ViewModel;
 use ZfcTicketSystem\Entity\Ticketsubject;
 
 class TicketSystemController extends BaseController {
-	/** @var  \ZfcTicketSystem\Service\TicketSystem */
-	protected $ticketService;
-
 	public function indexAction(){
 		$view = new ViewModel(array('ticketList' => $this->getTicketService()->getTickets4User($this->getAuthService()->getIdentity()->getUsrid())));
 		$view->setTemplate('zfc-ticket-system/index');

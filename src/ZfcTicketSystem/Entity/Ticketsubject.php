@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Ticketsubject
  *
- * @ORM\Table(name="ticketSubject", indexes={@ORM\Index(name="fk_ticketSubject_users1_idx", columns={"users_usrId"}), @ORM\Index(name="fk_ticketSubject_ticketCategory1_idx", columns={"ticketCategory_categoryId"})})
+ * @ORM\Table(name="ticketSubject", indexes={@ORM\Index(name="fk_ticketSubject_users1_idx", columns={"usrId"}), @ORM\Index(name="fk_ticketSubject_ticketCategory1_idx", columns={"ticketCategory_categoryId"})})
  * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketSubject")
  */
 class Ticketsubject {
@@ -40,11 +40,11 @@ class Ticketsubject {
 	private $type;
 
 	/**
-	 * @var \PServerCMS\Entity\Users
+	 * @var UserInterface
 	 *
 	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\Users")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="users_usrId", referencedColumnName="usrId")
+	 *   @ORM\JoinColumn(name="usrId", referencedColumnName="usrId")
 	 * })
 	 */
 	private $user;
@@ -144,11 +144,11 @@ class Ticketsubject {
 	/**
 	 * Set user
 	 *
-	 * @param \PServerCMS\Entity\Users $user
+	 * @param UserInterface $user
 	 *
 	 * @return Ticketsubject
 	 */
-	public function setUser( \PServerCMS\Entity\Users $user = null ) {
+	public function setUser( UserInterface $user = null ) {
 		$this->user = $user;
 
 		return $this;
@@ -157,7 +157,7 @@ class Ticketsubject {
 	/**
 	 * Get user
 	 *
-	 * @return \PServerCMS\Entity\Users
+	 * @return UserInterface
 	 */
 	public function getUser() {
 		return $this->user;

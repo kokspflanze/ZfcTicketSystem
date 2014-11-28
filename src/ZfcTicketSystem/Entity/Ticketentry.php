@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ticketentry
  *
- * @ORM\Table(name="ticketEntry", indexes={@ORM\Index(name="fk_ticketEntry_ticketSubject1_idx", columns={"ticketSubject_ticketId"}), @ORM\Index(name="fk_ticketEntry_users1_idx", columns={"users_usrId"})})
+ * @ORM\Table(name="ticketEntry", indexes={@ORM\Index(name="fk_ticketEntry_ticketSubject1_idx", columns={"ticketSubject_ticketId"}), @ORM\Index(name="fk_ticketEntry_users1_idx", columns={"usrId"})})
  * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketEntry")
  */
 class Ticketentry {
@@ -28,11 +28,11 @@ class Ticketentry {
 	private $memo;
 
 	/**
-	 * @var \PServerCMS\Entity\Users
+	 * @var UserInterface
 	 *
 	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\Users")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="users_usrId", referencedColumnName="usrId")
+	 *   @ORM\JoinColumn(name="usrId", referencedColumnName="usrId")
 	 * })
 	 */
 	private $user;
@@ -90,11 +90,11 @@ class Ticketentry {
 	/**
 	 * Set user
 	 *
-	 * @param \PServerCMS\Entity\Users $user
+	 * @param UserInterface $user
 	 *
 	 * @return Ticketentry
 	 */
-	public function setUser( \PServerCMS\Entity\Users $user = null ) {
+	public function setUser( UserInterface $user = null ) {
 		$this->user = $user;
 
 		return $this;
@@ -103,7 +103,7 @@ class Ticketentry {
 	/**
 	 * Get user
 	 *
-	 * @return \PServerCMS\Entity\Users
+	 * @return UserInterface
 	 */
 	public function getUser() {
 		return $this->user;
