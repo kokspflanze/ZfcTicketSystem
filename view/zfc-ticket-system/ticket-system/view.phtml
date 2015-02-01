@@ -2,5 +2,5 @@
 
 <?php foreach($this->entry as $curEntry): ?>
 	<label><?= $curEntry->getUser()->getUsername() ?></label><br/>
-	<?= $curEntry->getMemo() ?><br />
+	<?= $this->bbCodeParser($curEntry->getMemo()) ?><br />
 <?php endforeach ?>
