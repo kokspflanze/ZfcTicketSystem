@@ -22,8 +22,6 @@
 	"require": {
 		"php": ">=5.4",
 		"doctrine/doctrine-orm-module": "0.*",
-		"zf-commons/zfc-user-doctrine-orm": "0.*",
-	  	"kokspflanze/zfc-bbcode": "dev-master",
-	  	"samclarke/sbb-code-parser": "dev-master"
+		"zf-commons/zfc-user-doctrine-orm": "0.*"
 	}
 }
