@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: †KôKšPfLâÑzè®
- * Date: 07.08.14
- * Time: 23:40
- */
 
 namespace ZfcTicketSystem\Form;
 

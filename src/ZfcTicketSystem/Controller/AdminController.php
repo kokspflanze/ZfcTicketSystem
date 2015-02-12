@@ -1,14 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: †KôKšPfLâÑzè®
- * Date: 23.08.14
- * Time: 13:13
- */
 
 namespace ZfcTicketSystem\Controller;
 
-use Zend\View\Model\ViewModel;
 use ZfcTicketSystem\Entity\Ticketsubject;
 
 class AdminController extends BaseController {

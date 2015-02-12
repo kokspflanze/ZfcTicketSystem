@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: †KôKšPfLâÑzè®
- * Date: 23.08.14
- * Time: 13:31
- */
 
 namespace ZfcTicketSystem\Controller;
 
@@ -32,8 +26,8 @@ class BaseController extends AbstractActionController {
 	 */
 	protected function getAuthService() {
 		if (!$this->authService) {
-			$aConfig = $this->getServiceLocator()->get('Config');
-			$this->authService = $this->getServiceLocator()->get($aConfig['zfc-ticket-system']['auth_service']);
+			$config = $this->getServiceLocator()->get('Config');
+			$this->authService = $this->getServiceLocator()->get($config['zfc-ticket-system']['auth_service']);
 		}
 
 		return $this->authService;

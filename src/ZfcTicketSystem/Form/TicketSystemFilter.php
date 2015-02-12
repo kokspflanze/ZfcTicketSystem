@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: †KôKšPfLâÑzè®
- * Date: 04.08.14
- * Time: 22:43
- */
 
 namespace ZfcTicketSystem\Form;
 
@@ -12,8 +6,13 @@ use ZfcBase\InputFilter\ProvidesEventsInputFilter;
 use Zend\ServiceManager\ServiceManager;
 
 class TicketSystemFilter extends ProvidesEventsInputFilter {
-
+	/**
+	 * @var ServiceManager
+	 */
 	protected $serviceManager;
+	/**
+	 * @var \Doctrine\ORM\EntityManager
+	 */
 	protected $entityManager;
 
 	public function __construct( ServiceManager $serviceManager ){
