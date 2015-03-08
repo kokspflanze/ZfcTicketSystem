@@ -76,7 +76,7 @@ class TicketSubject extends EntityRepository
     public function getNumberOfNewTickets()
     {
         $query = $this->createQueryBuilder( 'p' )
-            ->select( 'COUNT(*)' )
+            ->select( 'COUNT(p.ticketid)' )
             ->where( 'p.type = :type' )
             ->setParameter( 'type', \ZfcTicketSystem\Entity\Ticketsubject::TypeNew )
             ->getQuery();
