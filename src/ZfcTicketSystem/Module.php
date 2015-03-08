@@ -47,7 +47,7 @@ class Module
                 'zfcticketsystem_entry_options'           => function ( $sm ) {
                     /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
                     $config = $sm->get( 'Configuration' );
-                    return new Options\EntityOptions( $config['zfcticketsystem']['entity'] );
+                    return new Options\EntityOptions( $config['zfc-ticket-system']['entity'] );
                 }
             ),
         );
