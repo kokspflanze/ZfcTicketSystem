@@ -20,6 +20,17 @@ class Module
         ];
     }
 
+    public function getViewHelperConfig()
+    {
+        return [
+            'factories'  => [
+                'newTicketWidget' => function ( AbstractPluginManager $pluginManager ) {
+                    return new View\Helper\NewTicketWidget( $pluginManager->getServiceLocator() );
+                },
+            ]
+        ];
+    }
+
     /**
      * Expected to return \Zend\ServiceManager\Config object or array to
      * seed such an object.

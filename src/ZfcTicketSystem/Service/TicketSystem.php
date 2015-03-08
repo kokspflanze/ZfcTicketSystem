@@ -173,6 +173,16 @@ class TicketSystem implements ServiceManagerAwareInterface {
 		return $this->ticketSystemEntryForm;
 	}
 
+    /**
+     * @return int
+     */
+    public function getNumberOfNewTickets()
+    {
+        /** @var \ZfcTicketSystem\Entity\Repository\TicketSubject $repository */
+        $repository = $this->getEntityManager()->getRepository($this->getEntityOptions()->getTicketSubject());
+        return $repository->getNumberOfNewTickets();
+    }
+
 	/**
 	 * @param $userId
 	 *
