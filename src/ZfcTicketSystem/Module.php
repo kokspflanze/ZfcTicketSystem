@@ -2,6 +2,8 @@
 
 namespace ZfcTicketSystem;
 
+use Zend\ServiceManager\AbstractPluginManager;
+
 class Module
 {
     public function getConfig()
@@ -24,7 +26,7 @@ class Module
     {
         return [
             'factories'  => [
-                'newTicketWidget' => function ( AbstractPluginManager $pluginManager ) {
+                'numberOfNewTickets' => function ( AbstractPluginManager $pluginManager ) {
                     return new View\Helper\NewTicketWidget( $pluginManager->getServiceLocator() );
                 },
             ]
