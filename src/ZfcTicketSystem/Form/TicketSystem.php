@@ -32,7 +32,7 @@ class TicketSystem extends ProvidesEventsForm {
 			'type' => 'DoctrineModule\Form\Element\ObjectSelect',
 			'options' => array(
 				'object_manager'=> $entityManager,
-				'target_class'  => 'ZfcTicketSystem\Entity\Ticketcategory',
+				'target_class'  => 'ZfcTicketSystem\Entity\TicketCategory',
 				'property'		=> 'subject',
 				'label'			=> 'Category',
 				'empty_option'  => '-- select --',

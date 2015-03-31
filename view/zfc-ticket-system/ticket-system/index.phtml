@@ -18,7 +18,7 @@ $typeList = array('new', 'open', 'closed');
 				<th><?= $typeList[$ticketSubject->getType()] ?></th>
 				<th><?= $ticketSubject->getLastEdit()->format('d.m.Y H:i') ?></th>
 				<th><?= $ticketSubject->getCreated()->format('d.m.Y H:i') ?></th>
-				<th><a href="<?= $this->url('zfc-ticketsystem', array('id' => $ticketSubject->getTicketid(), 'action' => 'view' )) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> View</a></th>
+				<th><a href="<?= $this->url('zfc-ticketsystem', array('id' => $ticketSubject->getId(), 'action' => 'view' )) ?>" class="btn	btn-warning btn-sm"><i class="fa fa-edit"></i> View</a></th>
 			</tr>
 		<?php endforeach ?>
 	</table>

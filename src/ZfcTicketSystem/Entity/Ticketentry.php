@@ -5,20 +5,20 @@ namespace ZfcTicketSystem\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ticketentry
+ * TicketEntry
  *
- * @ORM\Table(name="ticketEntry", indexes={@ORM\Index(name="fk_ticketEntry_ticketSubject1_idx", columns={"ticketSubject_ticketId"}), @ORM\Index(name="fk_ticketEntry_users1_idx", columns={"usrId"})})
+ * @ORM\Table(name="ticket_entry", indexes={@ORM\Index(name="fk_ticketEntry_ticketSubject1_idx", columns={"ticket_subject"}),@ORM\Index(name="fk_ticketEntry_users1_idx", columns={"usrId"})})
  * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketEntry")
  */
-class Ticketentry {
+class TicketEntry {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="ticketEntryId", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
-	private $ticketentryid;
+	private $id;
 
 	/**
 	 * @var string
@@ -30,7 +30,7 @@ class Ticketentry {
 	/**
 	 * @var UserInterface
 	 *
-	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\Users")
+	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\User")
 	 * @ORM\JoinColumns({
 	 *   @ORM\JoinColumn(name="usrId", referencedColumnName="usrId")
 	 * })
@@ -40,8 +40,8 @@ class Ticketentry {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\ManyToOne(targetEntity="Ticketsubject", inversedBy="ticketEntry")
-	 * @ORM\JoinColumn(name="ticketSubject_ticketId", referencedColumnName="ticketId")
+	 * @ORM\ManyToOne(targetEntity="TicketSubject", inversedBy="ticketEntry")
+	 * @ORM\JoinColumn(name="ticket_subject", referencedColumnName="id")
 	 */
 	private $subject;
 
@@ -57,12 +57,12 @@ class Ticketentry {
 	}
 
 	/**
-	 * Get ticketentryid
+	 * Get id
 	 *
 	 * @return integer
 	 */
-	public function getTicketentryid() {
-		return $this->ticketentryid;
+	public function getId() {
+		return $this->id;
 	}
 
 	/**
@@ -70,7 +70,7 @@ class Ticketentry {
 	 *
 	 * @param string $memo
 	 *
-	 * @return Ticketentry
+	 * @return TicketEntry
 	 */
 	public function setMemo( $memo ) {
 		$this->memo = $memo;
@@ -92,7 +92,7 @@ class Ticketentry {
 	 *
 	 * @param UserInterface $user
 	 *
-	 * @return Ticketentry
+	 * @return TicketEntry
 	 */
 	public function setUser( UserInterface $user = null ) {
 		$this->user = $user;
@@ -110,11 +110,11 @@ class Ticketentry {
 	}
 
 	/**
-	 * @param Ticketsubject $subject
+	 * @param TicketSubject $subject
 	 *
-	 * @return Ticketentry
+	 * @return TicketEntry
 	 */
-	public function setSubject( Ticketsubject $subject){
+	public function setSubject( TicketSubject $subject){
 		$this->subject = $subject;
 
 		return $this;
@@ -125,7 +125,7 @@ class Ticketentry {
 	 *
 	 * @param \DateTime $created
 	 *
-	 * @return Ticketentry
+	 * @return TicketEntry
 	 */
 	public function setCreated( $created ) {
 		$this->created = $created;

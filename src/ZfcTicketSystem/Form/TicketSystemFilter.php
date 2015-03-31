@@ -81,12 +81,12 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 	 */
 	protected function getTicketCategory(){
 		/** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $ticketCategory */
-		$ticketCategory = $this->getEntityManager()->getRepository('ZfcTicketSystem\Entity\Ticketcategory');
+		$ticketCategory = $this->getEntityManager()->getRepository('ZfcTicketSystem\Entity\TicketCategory');
 		$category = $ticketCategory->getActiveCategory();
 
 		$result = array();
 		foreach($category as $entry){
-			$result[] = $entry->getCategoryid();
+			$result[] = $entry->getId();
 		}
 		return $result;
 	}

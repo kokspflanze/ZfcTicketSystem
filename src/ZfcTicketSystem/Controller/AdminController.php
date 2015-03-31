@@ -2,7 +2,7 @@
 
 namespace ZfcTicketSystem\Controller;
 
-use ZfcTicketSystem\Entity\Ticketsubject;
+use ZfcTicketSystem\Entity\TicketSubject;
 
 class AdminController extends BaseController {
 
@@ -26,7 +26,7 @@ class AdminController extends BaseController {
 
 		$request = $this->getRequest();
 		if($request->isPost()){
-			$ticketSubject->setType(Ticketsubject::TypeOpen);
+			$ticketSubject->setType(TicketSubject::TypeOpen);
 			$oTicketSystem = $this->getTicketService()->newEntry($this->params()->fromPost(), $this->getAuthService()->getIdentity(), $ticketSubject);
 			if($oTicketSystem){
 				return $this->redirect()->toRoute('zfc-ticketsystem-admin', array('id' => $ticketId, 'action' => 'view'));

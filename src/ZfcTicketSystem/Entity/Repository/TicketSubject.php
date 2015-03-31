@@ -30,7 +30,7 @@ class TicketSubject extends EntityRepository
     {
 		$query = $this->createQueryBuilder('p')
 			->select('p')
-			->where('p.ticketid = :subjectTicketId')
+			->where('p.id = :subjectTicketId')
 			->setParameter('subjectTicketId', $ticketId)
 			->getQuery();
 
@@ -44,7 +44,7 @@ class TicketSubject extends EntityRepository
     {
 		$query = $this->createQueryBuilder('p')
 			->select('p')
-			->where('p.ticketid = :subjectTicketId')
+			->where('p.id = :subjectTicketId')
 			->setParameter('subjectTicketId', $ticketId)
 			->andWhere('p.user = :user')
 			->setParameter('user', $userId)
@@ -76,9 +76,9 @@ class TicketSubject extends EntityRepository
     public function getNumberOfNewTickets()
     {
         $query = $this->createQueryBuilder( 'p' )
-            ->select( 'COUNT(p.ticketid)' )
+            ->select( 'COUNT(p.id)' )
             ->where( 'p.type = :type' )
-            ->setParameter( 'type', \ZfcTicketSystem\Entity\Ticketsubject::TypeNew )
+            ->setParameter( 'type', \ZfcTicketSystem\Entity\TicketSubject::TypeNew )
             ->getQuery();
 
         return $query->getSingleScalarResult();

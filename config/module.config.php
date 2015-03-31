@@ -67,9 +67,9 @@ return [
 	'zfc-ticket-system' => [
 		'auth_service' => 'user_auth_service',
 		'entity' => [
-			'ticket_category' => 'ZfcTicketSystem\Entity\Ticketcategory',
-			'ticket_entry' => 'ZfcTicketSystem\Entity\Ticketentry',
-			'ticket_subject' => 'ZfcTicketSystem\Entity\Ticketsubject',
+			'ticket_category' => 'ZfcTicketSystem\Entity\TicketCategory',
+			'ticket_entry' => 'ZfcTicketSystem\Entity\TicketEntry',
+			'ticket_subject' => 'ZfcTicketSystem\Entity\TicketSubject',
 		],
 	],
 ];

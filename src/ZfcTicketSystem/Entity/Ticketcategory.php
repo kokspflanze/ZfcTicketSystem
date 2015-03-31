@@ -5,20 +5,20 @@ namespace ZfcTicketSystem\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ticketcategory
+ * TicketCategory
  *
- * @ORM\Table(name="ticketCategory")
+ * @ORM\Table(name="ticket_category")
  * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketCategory")
  */
-class Ticketcategory {
+class TicketCategory {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="categoryId", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
-	private $categoryid;
+	private $id;
 
 	/**
 	 * @var string
@@ -30,9 +30,9 @@ class Ticketcategory {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="sortkey", type="smallint", nullable=false)
+	 * @ORM\Column(name="sort_key", type="smallint", nullable=false)
 	 */
-	private $sortkey;
+	private $sortKey;
 
 	/**
 	 * @var string
@@ -43,12 +43,12 @@ class Ticketcategory {
 
 
 	/**
-	 * Get categoryid
+	 * Get id
 	 *
 	 * @return integer
 	 */
-	public function getCategoryid() {
-		return $this->categoryid;
+	public function getId() {
+		return $this->id;
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Ticketcategory {
 	 *
 	 * @param string $subject
 	 *
-	 * @return Ticketcategory
+	 * @return TicketCategory
 	 */
 	public function setSubject( $subject ) {
 		$this->subject = $subject;
@@ -74,25 +74,25 @@ class Ticketcategory {
 	}
 
 	/**
-	 * Set sortkey
+	 * Set sortKey
 	 *
-	 * @param integer $sortkey
+	 * @param integer $sortKey
 	 *
-	 * @return Ticketcategory
+	 * @return TicketCategory
 	 */
-	public function setSortkey( $sortkey ) {
-		$this->sortkey = $sortkey;
+	public function setSortKey( $sortKey ) {
+		$this->sortKey = $sortKey;
 
 		return $this;
 	}
 
 	/**
-	 * Get sortkey
+	 * Get sortKey
 	 *
 	 * @return integer
 	 */
-	public function getSortkey() {
-		return $this->sortkey;
+	public function getSortKey() {
+		return $this->sortKey;
 	}
 
 	/**
@@ -100,7 +100,7 @@ class Ticketcategory {
 	 *
 	 * @param string $active
 	 *
-	 * @return Ticketcategory
+	 * @return TicketCategory
 	 */
 	public function setActive( $active ) {
 		$this->active = $active;

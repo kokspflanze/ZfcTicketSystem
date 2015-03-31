@@ -11,17 +11,17 @@ class EntityOptions extends AbstractOptions
     /**
      * @var string
      */
-    protected $ticketCategory = 'ZfcTicketSystem\Entity\Ticketcategory';
+    protected $ticketCategory = 'ZfcTicketSystem\Entity\TicketCategory';
 
     /**
      * @var string
      */
-    protected $ticketEntry = 'ZfcTicketSystem\Entity\Ticketentry';
+    protected $ticketEntry = 'ZfcTicketSystem\Entity\TicketEntry';
 
     /**
      * @var string
      */
-    protected $ticketSubject = 'ZfcTicketSystem\Entity\Ticketsubject';
+    protected $ticketSubject = 'ZfcTicketSystem\Entity\TicketSubject';
 
     /**
      * @return string

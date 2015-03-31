@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Ticketsubject
+ * TicketSubject
  *
- * @ORM\Table(name="ticketSubject", indexes={@ORM\Index(name="fk_ticketSubject_users1_idx", columns={"usrId"}), @ORM\Index(name="fk_ticketSubject_ticketCategory1_idx", columns={"ticketCategory_categoryId"})})
+ * @ORM\Table(name="ticket_subject", indexes={@ORM\Index(name="fk_ticketSubject_users1_idx", columns={"usrId"}), @ORM\Index(name="fk_ticketSubject_ticketCategory1_idx", columns={"ticket_category"})})
  * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketSubject")
  */
-class Ticketsubject {
+class TicketSubject {
 
 	const TypeNew = 0;
 	const TypeOpen = 1;
@@ -19,11 +19,11 @@ class Ticketsubject {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="ticketId", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
-	private $ticketid;
+	private $id;
 
 	/**
 	 * @var string
@@ -42,7 +42,7 @@ class Ticketsubject {
 	/**
 	 * @var UserInterface
 	 *
-	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\Users")
+	 * @ORM\ManyToOne(targetEntity="PServerCMS\Entity\User")
 	 * @ORM\JoinColumns({
 	 *   @ORM\JoinColumn(name="usrId", referencedColumnName="usrId")
 	 * })
@@ -50,19 +50,19 @@ class Ticketsubject {
 	private $user;
 
 	/**
-	 * @var Ticketcategory
+	 * @var TicketCategory
 	 *
-	 * @ORM\ManyToOne(targetEntity="ZfcTicketSystem\Entity\Ticketcategory")
+	 * @ORM\ManyToOne(targetEntity="TicketCategory")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="ticketCategory_categoryId", referencedColumnName="categoryId")
+	 *   @ORM\JoinColumn(name="ticket_category", referencedColumnName="id")
 	 * })
 	 */
 	private $ticketCategory;
 
 	/**
-	 * @var Ticketentry
+	 * @var TicketEntry
 	 *
-	 * @ORM\OneToMany(targetEntity="ZfcTicketSystem\Entity\Ticketentry", mappedBy="subject")
+	 * @ORM\OneToMany(targetEntity="TicketEntry", mappedBy="subject")
 	 * @ORM\OrderBy({"created" = "desc"})
 	 */
 	private $ticketEntry;
@@ -89,12 +89,12 @@ class Ticketsubject {
 	}
 
 	/**
-	 * Get ticketid
+	 * Get id
 	 *
 	 * @return integer
 	 */
-	public function getTicketid() {
-		return $this->ticketid;
+	public function getId() {
+		return $this->id;
 	}
 
 	/**
@@ -102,7 +102,7 @@ class Ticketsubject {
 	 *
 	 * @param string $subject
 	 *
-	 * @return Ticketsubject
+	 * @return TicketSubject
 	 */
 	public function setSubject( $subject ) {
 		$this->subject = $subject;
@@ -124,7 +124,7 @@ class Ticketsubject {
 	 *
 	 * @param string $type
 	 *
-	 * @return Ticketsubject
+	 * @return TicketSubject
 	 */
 	public function setType( $type ) {
 		$this->type = $type;
@@ -146,7 +146,7 @@ class Ticketsubject {
 	 *
 	 * @param UserInterface $user
 	 *
-	 * @return Ticketsubject
+	 * @return TicketSubject
 	 */
 	public function setUser( UserInterface $user = null ) {
 		$this->user = $user;
@@ -166,11 +166,11 @@ class Ticketsubject {
 	/**
 	 * Set ticketCategory
 	 *
-	 * @param \ZfcTicketSystem\Entity\Ticketcategory $ticketCategory
+	 * @param TicketCategory $ticketCategory
 	 *
-	 * @return Ticketsubject
+	 * @return TicketSubject
 	 */
-	public function setTicketCategory( \ZfcTicketSystem\Entity\Ticketcategory $ticketCategory = null ) {
+	public function setTicketCategory( TicketCategory $ticketCategory = null ) {
 		$this->ticketCategory = $ticketCategory;
 
 		return $this;
@@ -179,7 +179,7 @@ class Ticketsubject {
 	/**
 	 * Get ticketCategory
 	 *
-	 * @return \ZfcTicketSystem\Entity\Ticketcategory
+	 * @return TicketCategory
 	 */
 	public function getTicketCategory() {
 		return $this->ticketCategory;
@@ -188,11 +188,11 @@ class Ticketsubject {
 	/**
 	 * Set ticketCategory
 	 *
-	 * @param Ticketentry $ticketCategory
+	 * @param TicketEntry $ticketCategory
 	 *
-	 * @return Ticketentry[]
+	 * @return TicketEntry[]
 	 */
-	public function addTicketEntry( Ticketentry $ticketEntry = null ) {
+	public function addTicketEntry( TicketEntry $ticketEntry = null ) {
 		$this->ticketEntry[] = $ticketEntry;
 
 		return $this;
@@ -201,7 +201,7 @@ class Ticketsubject {
 	/**
 	 * Get ticketCategory
 	 *
-	 * @return Ticketentry[]
+	 * @return TicketEntry[]
 	 */
 	public function getTicketEntry() {
 		return $this->ticketEntry;
@@ -212,7 +212,7 @@ class Ticketsubject {
 	 *
 	 * @param \DateTime $created
 	 *
-	 * @return Ticketsubject
+	 * @return TicketSubject
 	 */
 	public function setCreated( $created ) {
 		$this->created = $created;
@@ -234,7 +234,7 @@ class Ticketsubject {
 	 *
 	 * @param \DateTime $lastEdit
 	 *
-	 * @return Ticketsubject
+	 * @return TicketSubject
 	 */
 	public function setLastEdit( $lastEdit ) {
 		$this->lastEdit = $lastEdit;
