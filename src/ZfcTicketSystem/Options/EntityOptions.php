@@ -24,6 +24,11 @@ class EntityOptions extends AbstractOptions
     protected $ticketSubject = 'ZfcTicketSystem\Entity\TicketSubject';
 
     /**
+     * @var string
+     */
+    protected $user = 'SmallUser\Entity\User';
+
+    /**
      * @return string
      */
     public function getTicketCategory()
@@ -80,5 +85,23 @@ class EntityOptions extends AbstractOptions
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param string $user
+     * @return EntityOptions
+     */
+    public function setUser( $user )
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
 }

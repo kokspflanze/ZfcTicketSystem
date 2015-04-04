@@ -1,5 +1,8 @@
-ZfcTicketSystem
-===============
+# ZfcTicketSystem
+
+Master
+[![Build Status](https://travis-ci.org/kokspflanze/ZfcTicketSystem.svg?branch=master)](https://travis-ci.org/kokspflanze/ZfcTicketSystem?branch=master)
+[![Coverage Status](https://coveralls.io/repos/kokspflanze/ZfcTicketSystem/badge.svg?branch=master)](https://coveralls.io/r/kokspflanze/ZfcTicketSystem?branch=master)
 
 - run the SQL script [db/dump.sql]
 

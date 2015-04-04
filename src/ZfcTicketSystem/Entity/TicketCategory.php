@@ -6,115 +6,117 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * TicketCategory
- *
  * @ORM\Table(name="ticket_category")
  * @ORM\Entity(repositoryClass="ZfcTicketSystem\Entity\Repository\TicketCategory")
  */
 class TicketCategory
 {
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="id", type="integer", nullable=false)
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="IDENTITY")
-	 */
-	private $id;
+    /**
+     * @var integer
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="subject", type="string", length=45, nullable=false)
-	 */
-	private $subject;
+    /**
+     * @var string
+     * @ORM\Column(name="subject", type="string", length=45, nullable=false)
+     */
+    private $subject;
 
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="sort_key", type="smallint", nullable=false)
-	 */
-	private $sortKey;
+    /**
+     * @var integer
+     * @ORM\Column(name="sort_key", type="smallint", nullable=false)
+     */
+    private $sortKey;
 
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="active", type="string", nullable=false)
-	 */
-	private $active;
+    /**
+     * @var string
+     * @ORM\Column(name="active", type="string", nullable=false)
+     */
+    private $active;
 
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function setId( $id )
+    {
+        $this->id = $id;
 
-	/**
-	 * Get id
-	 *
-	 * @return integer
-	 */
-	public function getId() {
-		return $this->id;
-	}
+        return $this;
+    }
 
-	/**
-	 * Set subject
-	 *
-	 * @param string $subject
-	 *
-	 * @return TicketCategory
-	 */
-	public function setSubject( $subject ) {
-		$this->subject = $subject;
+    /**
+     * Get id
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-		return $this;
-	}
+    /**
+     * Set subject
+     * @param string $subject
+     * @return TicketCategory
+     */
+    public function setSubject( $subject )
+    {
+        $this->subject = $subject;
 
-	/**
-	 * Get subject
-	 *
-	 * @return string
-	 */
-	public function getSubject() {
-		return $this->subject;
-	}
+        return $this;
+    }
 
-	/**
-	 * Set sortKey
-	 *
-	 * @param integer $sortKey
-	 *
-	 * @return TicketCategory
-	 */
-	public function setSortKey( $sortKey ) {
-		$this->sortKey = $sortKey;
+    /**
+     * Get subject
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
 
-		return $this;
-	}
+    /**
+     * Set sortKey
+     * @param integer $sortKey
+     * @return TicketCategory
+     */
+    public function setSortKey( $sortKey )
+    {
+        $this->sortKey = $sortKey;
 
-	/**
-	 * Get sortKey
-	 *
-	 * @return integer
-	 */
-	public function getSortKey() {
-		return $this->sortKey;
-	}
+        return $this;
+    }
 
-	/**
-	 * Set active
-	 *
-	 * @param string $active
-	 *
-	 * @return TicketCategory
-	 */
-	public function setActive( $active ) {
-		$this->active = $active;
+    /**
+     * Get sortKey
+     * @return integer
+     */
+    public function getSortKey()
+    {
+        return $this->sortKey;
+    }
 
-		return $this;
-	}
+    /**
+     * Set active
+     * @param string $active
+     * @return TicketCategory
+     */
+    public function setActive( $active )
+    {
+        $this->active = (string) $active;
 
-	/**
-	 * Get active
-	 *
-	 * @return string
-	 */
-	public function getActive() {
-		return $this->active;
-	}
+        return $this;
+    }
+
+    /**
+     * Get active
+     * @return string
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }

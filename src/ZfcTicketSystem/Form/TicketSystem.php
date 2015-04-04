@@ -7,9 +7,11 @@ use Zend\Form\Element;
 use ZfcBase\Form\ProvidesEventsForm;
 use Doctrine\ORM\EntityManager;
 
-class TicketSystem extends ProvidesEventsForm {
+class TicketSystem extends ProvidesEventsForm
+{
 
-	public function __construct( EntityManager $entityManager ) {
+	public function __construct( EntityManager $entityManager )
+    {
 		parent::__construct();
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Csrf',

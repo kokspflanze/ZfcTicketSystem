@@ -6,9 +6,11 @@ use Zend\Form\Form;
 use Zend\Form\Element;
 use ZfcBase\Form\ProvidesEventsForm;
 
-class TicketEntry extends ProvidesEventsForm {
+class TicketEntry extends ProvidesEventsForm
+{
 
-	public function __construct( ) {
+	public function __construct()
+    {
 		parent::__construct();
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Csrf',

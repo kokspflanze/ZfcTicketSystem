@@ -5,7 +5,8 @@ namespace ZfcTicketSystem\Form;
 use ZfcBase\InputFilter\ProvidesEventsInputFilter;
 use Zend\ServiceManager\ServiceManager;
 
-class TicketSystemFilter extends ProvidesEventsInputFilter {
+class TicketSystemFilter extends ProvidesEventsInputFilter
+{
 	/**
 	 * @var ServiceManager
 	 */
@@ -15,8 +16,8 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 	 */
 	protected $entityManager;
 
-	public function __construct( ServiceManager $serviceManager ){
-
+	public function __construct( ServiceManager $serviceManager )
+    {
 		$this->setServiceManager($serviceManager);
 
 		$this->add(array(
@@ -33,8 +34,6 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 				),
 			),
 		));
-
-
 
 		$this->add(array(
 			'name'       => 'categoryId',
@@ -62,7 +61,6 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 				),
 			),
 		));
-
 	}
 
 	/**
@@ -70,7 +68,8 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 	 *
 	 * @return $this
 	 */
-	public function setServiceManager( ServiceManager $oServiceManager ) {
+	public function setServiceManager( ServiceManager $oServiceManager )
+    {
 		$this->serviceManager = $oServiceManager;
 
 		return $this;
@@ -79,7 +78,8 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 	/**
 	 * @return array
 	 */
-	protected function getTicketCategory(){
+	protected function getTicketCategory()
+    {
 		/** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $ticketCategory */
 		$ticketCategory = $this->getEntityManager()->getRepository('ZfcTicketSystem\Entity\TicketCategory');
 		$category = $ticketCategory->getActiveCategory();
@@ -88,19 +88,22 @@ class TicketSystemFilter extends ProvidesEventsInputFilter {
 		foreach($category as $entry){
 			$result[] = $entry->getId();
 		}
+
 		return $result;
 	}
 
 	/**
 	 * @return ServiceManager
 	 */
-	protected function getServiceManager() {
+	protected function getServiceManager()
+    {
 		return $this->serviceManager;
 	}
 	/**
 	 * @return \Doctrine\ORM\EntityManager
 	 */
-	protected function getEntityManager() {
+	protected function getEntityManager()
+    {
 		if (!$this->entityManager) {
 			$this->entityManager = $this->getServiceManager()->get('Doctrine\ORM\EntityManager');
 		}

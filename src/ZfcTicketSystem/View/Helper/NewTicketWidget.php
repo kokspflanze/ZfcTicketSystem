@@ -14,23 +14,25 @@ class NewTicketWidget extends AbstractHelper
     /**
      * @param ServiceLocatorInterface $serviceLocatorInterface
      */
-    public function __construct(ServiceLocatorInterface $serviceLocatorInterface){
-        $this->setServiceLocator($serviceLocatorInterface);
+    public function __construct( ServiceLocatorInterface $serviceLocatorInterface )
+    {
+        $this->setServiceLocator( $serviceLocatorInterface );
     }
 
     /**
      * @return ServiceLocatorInterface
      */
-    protected function getServiceLocator(){
+    protected function getServiceLocator()
+    {
         return $this->serviceLocator;
     }
 
     /**
      * @param ServiceLocatorInterface $serviceLocator
-     *
      * @return $this
      */
-    protected function setServiceLocator(ServiceLocatorInterface $serviceLocator){
+    protected function setServiceLocator( ServiceLocatorInterface $serviceLocator )
+    {
         $this->serviceLocator = $serviceLocator;
 
         return $this;
@@ -39,14 +41,16 @@ class NewTicketWidget extends AbstractHelper
     /**
      * @return int
      */
-    public function __invoke(){
+    public function __invoke()
+    {
         return $this->getTicketService()->getNumberOfNewTickets();
     }
 
     /**
      * @return \ZfcTicketSystem\Service\TicketSystem
      */
-    protected function getTicketService(){
-        return $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_service');
+    protected function getTicketService()
+    {
+        return $this->getServiceLocator()->get( 'zfcticketsystem_ticketsystem_service' );
     }
 }

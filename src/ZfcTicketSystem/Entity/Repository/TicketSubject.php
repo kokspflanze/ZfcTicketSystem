@@ -78,7 +78,7 @@ class TicketSubject extends EntityRepository
         $query = $this->createQueryBuilder( 'p' )
             ->select( 'COUNT(p.id)' )
             ->where( 'p.type = :type' )
-            ->setParameter( 'type', \ZfcTicketSystem\Entity\TicketSubject::TypeNew )
+            ->setParameter( 'type', \ZfcTicketSystem\Entity\TicketSubject::TYPE_NEW )
             ->getQuery();
 
         return $query->getSingleScalarResult();

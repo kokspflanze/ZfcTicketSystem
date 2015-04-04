@@ -70,6 +70,7 @@ return [
 			'ticket_category' => 'ZfcTicketSystem\Entity\TicketCategory',
 			'ticket_entry' => 'ZfcTicketSystem\Entity\TicketEntry',
 			'ticket_subject' => 'ZfcTicketSystem\Entity\TicketSubject',
+            'user' => 'SmallUser\Entity\User'
 		],
 	],
 ];
