@@ -48,7 +48,7 @@ class Module
             'factories'  => array(
                 'zfcticketsystem_ticketsystem_new_form'   => function ( $sm ) {
                     /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                    $form = new Form\TicketSystem( $sm->get( 'Doctrine\ORM\EntityManager' ) );
+                    $form = new Form\TicketSystem( $sm );
                     $form->setInputFilter( new Form\TicketSystemFilter( $sm ) );
                     return $form;
                 },

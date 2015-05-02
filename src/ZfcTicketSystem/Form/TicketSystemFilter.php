@@ -64,13 +64,13 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
 	}
 
 	/**
-	 * @param ServiceManager $oServiceManager
-	 *
+	 * @param ServiceManager $serviceManager
+
 	 * @return $this
 	 */
-	public function setServiceManager( ServiceManager $oServiceManager )
+	public function setServiceManager( ServiceManager $serviceManager )
     {
-		$this->serviceManager = $oServiceManager;
+		$this->serviceManager = $serviceManager;
 
 		return $this;
 	}
@@ -81,7 +81,10 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
 	protected function getTicketCategory()
     {
 		/** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $ticketCategory */
-		$ticketCategory = $this->getEntityManager()->getRepository('ZfcTicketSystem\Entity\TicketCategory');
+		$ticketCategory = $this->getEntityManager()->getRepository(
+            $this->getServiceManager()->get( 'zfcticketsystem_entry_options' )->getTicketCategory()
+        );
+
 		$category = $ticketCategory->getActiveCategory();
 
 		$result = array();
