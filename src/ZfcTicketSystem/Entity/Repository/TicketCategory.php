@@ -37,4 +37,13 @@ class TicketCategory extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p');
+    }
 } 
