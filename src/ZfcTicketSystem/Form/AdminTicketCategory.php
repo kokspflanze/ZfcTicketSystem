@@ -29,7 +29,7 @@ class AdminTicketCategory extends ProvidesEventsForm
         ));
 
         $this->add(array(
-            'name' => 'sortkey',
+            'name' => 'sort_key',
             'options' => array(
                 'label' => 'Sortkey',
             ),

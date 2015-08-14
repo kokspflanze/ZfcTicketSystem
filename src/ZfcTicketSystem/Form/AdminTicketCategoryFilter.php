@@ -25,7 +25,7 @@ class AdminTicketCategoryFilter extends ProvidesEventsInputFilter
         ));
 
         $this->add(array(
-            'name' => 'sortkey',
+            'name' => 'sort_key',
             'required' => false,
             'validators' => array(
                 array(
