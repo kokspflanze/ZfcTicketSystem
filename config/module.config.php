@@ -34,6 +34,12 @@ return [
 			],
 		],
 	],
+	'service_manager' => [
+		'invokables' => array(
+			'zfcticketsystem_ticketsystem_service' => 'ZfcTicketSystem\Service\TicketSystem',
+			'zfcticketsystem_category_service' => 'ZfcTicketSystem\Service\Category',
+		),
+	],
 	'controllers' => [
 		'invokables' => [
 			'ZfcTicketSystem\Controller\TicketSystem' => 'ZfcTicketSystem\Controller\TicketSystemController',

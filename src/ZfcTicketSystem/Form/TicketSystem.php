@@ -2,7 +2,7 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Zend\ServiceManager\ServiceManager;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Form\Form;
 use Zend\Form\Element;
 use ZfcBase\Form\ProvidesEventsForm;
@@ -10,9 +10,9 @@ use ZfcBase\Form\ProvidesEventsForm;
 class TicketSystem extends ProvidesEventsForm
 {
     /**
-     * @param ServiceManager $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
      */
-    public function __construct( ServiceManager $serviceLocator )
+    public function __construct( ServiceLocatorInterface $serviceLocator )
     {
         parent::__construct();
         $this->add(array(

@@ -3,12 +3,12 @@
 namespace ZfcTicketSystem\Form;
 
 use ZfcBase\InputFilter\ProvidesEventsInputFilter;
-use Zend\ServiceManager\ServiceManager;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class TicketSystemFilter extends ProvidesEventsInputFilter
 {
 	/**
-	 * @var ServiceManager
+	 * @var ServiceLocatorInterface
 	 */
 	protected $serviceManager;
 	/**
@@ -16,7 +16,7 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
 	 */
 	protected $entityManager;
 
-	public function __construct( ServiceManager $serviceManager )
+	public function __construct( ServiceLocatorInterface $serviceManager )
     {
 		$this->setServiceManager($serviceManager);
 
@@ -64,11 +64,11 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
 	}
 
 	/**
-	 * @param ServiceManager $serviceManager
+	 * @param ServiceLocatorInterface $serviceManager
 
 	 * @return $this
 	 */
-	public function setServiceManager( ServiceManager $serviceManager )
+	public function setServiceManager( ServiceLocatorInterface $serviceManager )
     {
 		$this->serviceManager = $serviceManager;
 
@@ -96,7 +96,7 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
 	}
 
 	/**
-	 * @return ServiceManager
+	 * @return ServiceLocatorInterface
 	 */
 	protected function getServiceManager()
     {

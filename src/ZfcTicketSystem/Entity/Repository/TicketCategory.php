@@ -46,4 +46,19 @@ class TicketCategory extends EntityRepository
         return $this->createQueryBuilder('p')
             ->select('p');
     }
+
+    /**
+     * @param $categoryId
+     * @return null|\ZfcTicketSystem\Entity\TicketCategory
+     */
+    public function getCategory4Id( $categoryId )
+    {
+        $query = $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.id = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->getQuery();
+
+        return $query->getOneOrNullResult();
+    }
 } 
