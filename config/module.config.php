@@ -8,7 +8,7 @@ return [
 				'options' => [
 					'route'    => '/panel/ticket[-:action[-:id]].html',
 					'constraints' => [
-						'action'     => '[a-zA-Z]+',
+						'action'     => '[a-zA-Z-]+',
 						'id'	     => '[0-9]+',
 					],
 					'defaults' => [
@@ -22,7 +22,7 @@ return [
 				'options' => [
 					'route'    => '/admin/ticket[-:action[-:id]][-:type].html',
 					'constraints' => [
-						'action'     => '[a-zA-Z]+',
+						'action'     => '[a-zA-Z-]+',
 						'id'    	 => '[0-9]+',
 						'type'    	 => '[0-9]+',
 					],
