@@ -29,6 +29,9 @@ class Module
                 'numberOfNewTickets' => function ( AbstractPluginManager $pluginManager ) {
                     return new View\Helper\NewTicketWidget( $pluginManager->getServiceLocator() );
                 },
+                'ticketStatus' => function ( AbstractPluginManager $pluginManager ) {
+                    return new View\Helper\TicketStatus( $pluginManager->getServiceLocator() );
+                },
             ]
         ];
     }

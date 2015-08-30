@@ -1,6 +1,3 @@
-<?php
-$typeList = array('new', 'open', 'closed');
-?>
 <a href="<?= $this->url('zfc-ticketsystem', array('action' => 'new')) ?>" class="btn btn-primary"><i class="fa fa-plus"></i> new ticket</a>
 <div class="clearfix"></div>
 <div class="table-responsive margin-top-10">
@@ -12,13 +9,26 @@ $typeList = array('new', 'open', 'closed');
 			<th>Created</th>
 			<th>Option</th>
 		</tr>
-		<?php foreach($this->ticketList as $ticketSubject): ?>
+		<?php
+		/**
+		 * @var \ZfcTicketSystem\Entity\TicketSubject $ticketSubject
+		 */
+		foreach($this->ticketList as $ticketSubject): ?>
 			<tr>
 				<th><?= $ticketSubject->getSubject() ?></th>
-				<th><?= $typeList[$ticketSubject->getType()] ?></th>
+				<th><?= $this->ticketStatus($ticketSubject->getType()) ?></th>
 				<th><?= $ticketSubject->getLastEdit()->format('d.m.Y H:i') ?></th>
 				<th><?= $ticketSubject->getCreated()->format('d.m.Y H:i') ?></th>
-				<th><a href="<?= $this->url('zfc-ticketsystem', array('id' => $ticketSubject->getId(), 'action' => 'view' )) ?>" class="btn	btn-warning btn-sm"><i class="fa fa-edit"></i> View</a></th>
+				<th>
+					<a href="<?= $this->url('zfc-ticketsystem', ['id' => $ticketSubject->getId(), 'action' => 'view']) ?>" class="btn btn-warning btn-sm">
+						<i class="fa fa-edit"></i> View
+					</a>
+					<?php if ($ticketSubject->getType() != 2) : ?>
+						<a href="<?= $this->url('zfc-ticketsystem', ['id' => $ticketSubject->getId(), 'action' => 'close-ticket']) ?>" class="btn btn-warning btn-sm">
+							<i class="fa fa-times"></i> Close
+						</a>
+					<?php endif; ?>
+				</th>
 			</tr>
 		<?php endforeach ?>
 	</table>

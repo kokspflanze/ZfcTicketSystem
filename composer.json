@@ -22,14 +22,13 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
+    "php": ">=5.5",
     "doctrine/doctrine-orm-module": "0.*",
-    "zf-commons/zfc-user-doctrine-orm": "0.*",
     "kokspflanze/small-user": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
-    "zendframework/zendframework": "~2.4",
+    "zendframework/zendframework": "~2.0",
     "fabpot/php-cs-fixer": "~1.0",
     "satooshi/php-coveralls": "dev-master",
     "phpunit/phpcov": "~2.0"

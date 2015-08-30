@@ -7,6 +7,7 @@ use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use ZfcTicketSystem\Mapper\HydratorTicketEntry;
 use ZfcTicketSystem\Mapper\HydratorTicketSubject;
+use ZfcTicketSystem\Entity\TicketSubject;
 
 class TicketSystem implements ServiceManagerAwareInterface
 {
@@ -24,7 +25,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     /**
      * @param array         $data
      * @param UserInterface $user
-     * @return bool|\ZfcTicketSystem\Entity\TicketSubject
+     * @return bool|TicketSubject
      */
     public function newTicket( array $data, UserInterface $user )
     {
@@ -38,7 +39,7 @@ class TicketSystem implements ServiceManagerAwareInterface
             return false;
         }
 
-        /** @var \ZfcTicketSystem\Entity\TicketSubject $ticketSubject */
+        /** @var TicketSubject $ticketSubject */
         $ticketSubject  = $form->getData();
         $ticketCategory = $this->getTicketCategory4Id( $data['categoryId'] );
 
@@ -57,12 +58,12 @@ class TicketSystem implements ServiceManagerAwareInterface
     }
 
     /**
-     * @param array                                 $data
-     * @param UserInterface                         $user
-     * @param \ZfcTicketSystem\Entity\TicketSubject $subject
+     * @param array         $data
+     * @param UserInterface $user
+     * @param TicketSubject $subject
      * @return bool|\ZfcTicketSystem\Entity\TicketEntry
      */
-    public function newEntry( array $data, UserInterface $user, \ZfcTicketSystem\Entity\TicketSubject $subject )
+    public function newEntry( array $data, UserInterface $user, TicketSubject $subject )
     {
         $form = $this->getTicketSystemEntryForm();
         $form->setHydrator( new HydratorTicketEntry() );
@@ -89,8 +90,23 @@ class TicketSystem implements ServiceManagerAwareInterface
     }
 
     /**
+     * @param TicketSubject $ticketSubject
+     * @return TicketSubject
+     */
+    public function closeTicket($ticketSubject)
+    {
+        $ticketSubject->setType(TicketSubject::TYPE_CLOSED);
+
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist( $ticketSubject );
+        $entityManager->flush();
+
+        return $ticketSubject;
+    }
+
+    /**
      * @param $userId
-     * @return \ZfcTicketSystem\Entity\TicketSubject[]|null
+     * @return TicketSubject[]|null
      */
     public function getTickets4User( $userId )
     {
@@ -104,7 +120,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     /**
      * @param $userId
      * @param $ticketId
-     * @return \ZfcTicketSystem\Entity\TicketSubject
+     * @return TicketSubject
      */
     public function getTicketSubject( $userId, $ticketId )
     {
@@ -116,9 +132,8 @@ class TicketSystem implements ServiceManagerAwareInterface
     }
 
     /**
-     * @param $userId
      * @param $ticketId
-     * @return \ZfcTicketSystem\Entity\TicketSubject
+     * @return TicketSubject
      */
     public function getTicketSubject4Admin( $ticketId )
     {
@@ -131,7 +146,7 @@ class TicketSystem implements ServiceManagerAwareInterface
 
     /**
      * @param $type
-     * @return \ZfcTicketSystem\Entity\TicketSubject[]
+     * @return TicketSubject[]
      */
     public function getTickets4Type( $type )
     {

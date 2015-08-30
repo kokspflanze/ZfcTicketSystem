@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/../vendor/autoload.php';
+
 use ZfcTicketSystemTest\Util\ServiceManagerFactory;
 
 ini_set('error_reporting', E_ALL);
