@@ -57,7 +57,7 @@ class TicketEntry
      * @param $id
      * @return $this
      */
-    public function setId( $id )
+    public function setId($id)
     {
         $this->id = $id;
 
@@ -78,7 +78,7 @@ class TicketEntry
      * @param string $memo
      * @return TicketEntry
      */
-    public function setMemo( $memo )
+    public function setMemo($memo)
     {
         $this->memo = $memo;
 
@@ -99,7 +99,7 @@ class TicketEntry
      * @param UserInterface $user
      * @return TicketEntry
      */
-    public function setUser( UserInterface $user = null )
+    public function setUser(UserInterface $user = null)
     {
         $this->user = $user;
 
@@ -127,7 +127,7 @@ class TicketEntry
      * @param TicketSubject $subject
      * @return TicketEntry
      */
-    public function setSubject( TicketSubject $subject )
+    public function setSubject(TicketSubject $subject)
     {
         $this->subject = $subject;
 
@@ -139,7 +139,7 @@ class TicketEntry
      * @param \DateTime $created
      * @return TicketEntry
      */
-    public function setCreated( $created )
+    public function setCreated($created)
     {
         $this->created = $created;
 

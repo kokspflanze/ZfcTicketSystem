@@ -76,9 +76,9 @@ class TicketSubject
 
     public function __construct()
     {
-        $this->type        = self::TYPE_NEW;
-        $this->created     = new \DateTime();
-        $this->lastEdit    = new \DateTime();
+        $this->type = self::TYPE_NEW;
+        $this->created = new \DateTime();
+        $this->lastEdit = new \DateTime();
         $this->ticketEntry = new ArrayCollection();
     }
 
@@ -86,7 +86,7 @@ class TicketSubject
      * @param $id
      * @return $this
      */
-    public function setId( $id )
+    public function setId($id)
     {
         $this->id = $id;
 
@@ -107,7 +107,7 @@ class TicketSubject
      * @param string $subject
      * @return TicketSubject
      */
-    public function setSubject( $subject )
+    public function setSubject($subject)
     {
         $this->subject = $subject;
 
@@ -128,7 +128,7 @@ class TicketSubject
      * @param string $type
      * @return TicketSubject
      */
-    public function setType( $type )
+    public function setType($type)
     {
         $this->type = $type;
 
@@ -149,7 +149,7 @@ class TicketSubject
      * @param UserInterface $user
      * @return TicketSubject
      */
-    public function setUser( UserInterface $user = null )
+    public function setUser(UserInterface $user = null)
     {
         $this->user = $user;
 
@@ -170,7 +170,7 @@ class TicketSubject
      * @param TicketCategory $ticketCategory
      * @return TicketSubject
      */
-    public function setTicketCategory( TicketCategory $ticketCategory = null )
+    public function setTicketCategory(TicketCategory $ticketCategory = null)
     {
         $this->ticketCategory = $ticketCategory;
 
@@ -191,7 +191,7 @@ class TicketSubject
      * @param \DateTime $created
      * @return TicketSubject
      */
-    public function setCreated( $created )
+    public function setCreated($created)
     {
         $this->created = $created;
 
@@ -212,7 +212,7 @@ class TicketSubject
      * @param \DateTime $lastEdit
      * @return $this
      */
-    public function setLastEdit( $lastEdit )
+    public function setLastEdit($lastEdit)
     {
         $this->lastEdit = $lastEdit;
 
@@ -233,7 +233,7 @@ class TicketSubject
      * @param TicketEntry $ticketCategory
      * @return $this
      */
-    public function addTicketEntry( TicketEntry $ticketEntry = null )
+    public function addTicketEntry(TicketEntry $ticketEntry = null)
     {
         $this->ticketEntry[] = $ticketEntry;
 

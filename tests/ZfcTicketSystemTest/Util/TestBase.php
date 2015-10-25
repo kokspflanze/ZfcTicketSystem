@@ -22,7 +22,8 @@ class TestBase extends TestCase
      * @param $methodName
      * @return \ReflectionMethod
      */
-    protected function getMethod($methodName) {
+    protected function getMethod($methodName)
+    {
         $reflection = new \ReflectionClass($this->getClass());
         $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
@@ -34,9 +35,9 @@ class TestBase extends TestCase
      * @param null $className
      * @return object
      */
-    protected function getClass( $className = null )
+    protected function getClass($className = null)
     {
-        $class = $className?$className:$this->className;
+        $class = $className ? $className : $this->className;
         /** @var \Zend\ServiceManager\ServiceManagerAwareInterface $class */
         $class = new $class;
         $class->setServiceManager($this->serviceManager);

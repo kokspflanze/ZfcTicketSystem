@@ -13,10 +13,10 @@ class TicketSystemController extends BaseController
      */
     public function indexAction()
     {
-        $view = new ViewModel( [
-            'ticketList' => $this->getTicketService()->getTickets4User( $this->getLoggedInUserId() )
+        $view = new ViewModel([
+            'ticketList' => $this->getTicketService()->getTickets4User($this->getLoggedInUserId())
         ]);
-        $view->setTemplate( 'zfc-ticket-system/index' );
+        $view->setTemplate('zfc-ticket-system/index');
 
         return $view;
     }
@@ -31,13 +31,14 @@ class TicketSystemController extends BaseController
         /** @var \Zend\Http\Request $request */
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $ticketSystem = $this->getTicketService()->newTicket( $this->params()->fromPost(), $this->getAuthService()->getIdentity() );
+            $ticketSystem = $this->getTicketService()->newTicket($this->params()->fromPost(),
+                $this->getAuthService()->getIdentity());
             if ($ticketSystem) {
-                return $this->redirect()->toRoute( 'zfc-ticketsystem' );
+                return $this->redirect()->toRoute('zfc-ticketsystem');
             }
         }
-        $view = new ViewModel( ['form' => $form] );
-        $view->setTemplate( 'zfc-ticket-system/new' );
+        $view = new ViewModel(['form' => $form]);
+        $view->setTemplate('zfc-ticket-system/new');
 
         return $view;
     }
@@ -47,11 +48,11 @@ class TicketSystemController extends BaseController
      */
     public function viewAction()
     {
-        $ticketId      = $this->params()->fromRoute( 'id' );
-        $ticketSubject = $this->getTicketService()->getTicketSubject( $this->getLoggedInUserId(), $ticketId );
+        $ticketId = $this->params()->fromRoute('id');
+        $ticketSubject = $this->getTicketService()->getTicketSubject($this->getLoggedInUserId(), $ticketId);
         // Fallback if no task
         if (!$ticketSubject) {
-            return $this->redirect()->toRoute( 'zfc-ticketsystem' );
+            return $this->redirect()->toRoute('zfc-ticketsystem');
         }
 
         $form = $this->getTicketService()->getTicketSystemEntryForm();
@@ -60,7 +61,7 @@ class TicketSystemController extends BaseController
         $request = $this->getRequest();
 
         if ($request->isPost()) {
-            $ticketSubject->setType( TicketSubject::TYPE_NEW );
+            $ticketSubject->setType(TicketSubject::TYPE_NEW);
             $ticketSystem = $this->getTicketService()->newEntry(
                 $this->params()->fromPost(),
                 $this->getAuthService()->getIdentity(),
@@ -68,18 +69,18 @@ class TicketSystemController extends BaseController
             );
 
             if ($ticketSystem) {
-                return $this->redirect()->toRoute( 'zfc-ticketsystem', ['id' => $ticketId, 'action' => 'view'] );
+                return $this->redirect()->toRoute('zfc-ticketsystem', ['id' => $ticketId, 'action' => 'view']);
             }
         }
 
         $entry = $ticketSubject->getTicketEntry();
 
-        $view = new ViewModel( [
-            'form'   => $form,
+        $view = new ViewModel([
+            'form' => $form,
             'ticket' => $ticketSubject,
-            'entry'  => $entry
+            'entry' => $entry
         ]);
-        $view->setTemplate( 'zfc-ticket-system/view' );
+        $view->setTemplate('zfc-ticket-system/view');
 
         return $view;
     }
@@ -89,14 +90,14 @@ class TicketSystemController extends BaseController
      */
     public function closeTicketAction()
     {
-        $ticketId      = $this->params()->fromRoute( 'id' );
-        $ticketSubject = $this->getTicketService()->getTicketSubject( $this->getLoggedInUserId(), $ticketId );
+        $ticketId = $this->params()->fromRoute('id');
+        $ticketSubject = $this->getTicketService()->getTicketSubject($this->getLoggedInUserId(), $ticketId);
 
         if ($ticketSubject) {
             $this->getTicketService()->closeTicket($ticketSubject);
         }
 
-        return $this->redirect()->toRoute( 'zfc-ticketsystem' );
+        return $this->redirect()->toRoute('zfc-ticketsystem');
     }
 
     /**

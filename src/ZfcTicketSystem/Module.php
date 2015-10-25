@@ -25,12 +25,12 @@ class Module
     public function getViewHelperConfig()
     {
         return [
-            'factories'  => [
-                'numberOfNewTickets' => function ( AbstractPluginManager $pluginManager ) {
-                    return new View\Helper\NewTicketWidget( $pluginManager->getServiceLocator() );
+            'factories' => [
+                'numberOfNewTickets' => function (AbstractPluginManager $pluginManager) {
+                    return new View\Helper\NewTicketWidget($pluginManager->getServiceLocator());
                 },
-                'ticketStatus' => function ( AbstractPluginManager $pluginManager ) {
-                    return new View\Helper\TicketStatus( $pluginManager->getServiceLocator() );
+                'ticketStatus' => function (AbstractPluginManager $pluginManager) {
+                    return new View\Helper\TicketStatus($pluginManager->getServiceLocator());
                 },
             ]
         ];
@@ -45,27 +45,27 @@ class Module
     public function getServiceConfig()
     {
         return array(
-            'factories'  => array(
-                'zfcticketsystem_ticketsystem_new_form'   => function ( $sm ) {
+            'factories' => array(
+                'zfcticketsystem_ticketsystem_new_form' => function ($sm) {
                     /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                    $form = new Form\TicketSystem( $sm );
-                    $form->setInputFilter( new Form\TicketSystemFilter( $sm ) );
+                    $form = new Form\TicketSystem($sm);
+                    $form->setInputFilter(new Form\TicketSystemFilter($sm));
                     return $form;
                 },
                 'zfcticketsystem_ticketsystem_entry_form' => function () {
                     $form = new Form\TicketEntry();
-                    $form->setInputFilter( new Form\TicketEntryFilter() );
+                    $form->setInputFilter(new Form\TicketEntryFilter());
                     return $form;
                 },
                 'zfcticketsystem_admin_category_form' => function () {
                     $form = new Form\AdminTicketCategory();
-                    $form->setInputFilter( new Form\AdminTicketCategoryFilter() );
+                    $form->setInputFilter(new Form\AdminTicketCategoryFilter());
                     return $form;
                 },
-                'zfcticketsystem_entry_options'           => function ( $sm ) {
+                'zfcticketsystem_entry_options' => function ($sm) {
                     /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                    $config = $sm->get( 'Configuration' );
-                    return new Options\EntityOptions( $config['zfc-ticket-system']['entity'] );
+                    $config = $sm->get('Configuration');
+                    return new Options\EntityOptions($config['zfc-ticket-system']['entity']);
                 }
             ),
         );

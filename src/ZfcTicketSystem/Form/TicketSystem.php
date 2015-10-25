@@ -12,7 +12,7 @@ class TicketSystem extends ProvidesEventsForm
     /**
      * @param ServiceLocatorInterface $serviceLocator
      */
-    public function __construct( ServiceLocatorInterface $serviceLocator )
+    public function __construct(ServiceLocatorInterface $serviceLocator)
     {
         parent::__construct();
         $this->add(array(
@@ -35,13 +35,13 @@ class TicketSystem extends ProvidesEventsForm
             'name' => 'categoryId',
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'options' => array(
-                'object_manager'=> $serviceLocator->get( 'Doctrine\ORM\EntityManager' ),
-                'target_class'  => $serviceLocator->get( 'zfcticketsystem_entry_options' )->getTicketCategory(),
-                'property'		=> 'subject',
-                'label'			=> 'Category',
-                'empty_option'  => '-- select --',
-                'is_method'		=> true,
-                'find_method'	=> array(
+                'object_manager' => $serviceLocator->get('Doctrine\ORM\EntityManager'),
+                'target_class' => $serviceLocator->get('zfcticketsystem_entry_options')->getTicketCategory(),
+                'property' => 'subject',
+                'label' => 'Category',
+                'empty_option' => '-- select --',
+                'is_method' => true,
+                'find_method' => array(
                     'name' => 'getActiveCategory',
                 ),
             ),
@@ -66,7 +66,7 @@ class TicketSystem extends ProvidesEventsForm
             ->setLabel('Submit')
             ->setAttributes(array(
                 'class' => 'btn btn-primary',
-                'type'  => 'submit',
+                'type' => 'submit',
             ));
 
         $this->add($submitElement, array(

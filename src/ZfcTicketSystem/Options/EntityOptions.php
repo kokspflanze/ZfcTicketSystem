@@ -41,7 +41,7 @@ class EntityOptions extends AbstractOptions
      *
      * @return EntityOptions
      */
-    public function setTicketCategory( $ticketCategory )
+    public function setTicketCategory($ticketCategory)
     {
         $this->ticketCategory = $ticketCategory;
         return $this;
@@ -60,7 +60,7 @@ class EntityOptions extends AbstractOptions
      *
      * @return EntityOptions
      */
-    public function setTicketEntry( $ticketEntry )
+    public function setTicketEntry($ticketEntry)
     {
         $this->ticketEntry = $ticketEntry;
         return $this;
@@ -79,7 +79,7 @@ class EntityOptions extends AbstractOptions
      *
      * @return EntityOptions
      */
-    public function setTicketSubject( $ticketSubject )
+    public function setTicketSubject($ticketSubject)
     {
         $this->ticketSubject = $ticketSubject;
         return $this;
@@ -97,7 +97,7 @@ class EntityOptions extends AbstractOptions
      * @param string $user
      * @return EntityOptions
      */
-    public function setUser( $user )
+    public function setUser($user)
     {
         $this->user = $user;
 

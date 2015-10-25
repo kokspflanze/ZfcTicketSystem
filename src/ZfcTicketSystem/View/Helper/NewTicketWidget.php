@@ -18,6 +18,6 @@ class NewTicketWidget extends InvokerBase
      */
     protected function getTicketService()
     {
-        return $this->getServiceLocator()->get( 'zfcticketsystem_ticketsystem_service' );
+        return $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_service');
     }
 }

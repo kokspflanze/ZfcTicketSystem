@@ -59,7 +59,7 @@ class Category implements ServiceManagerAwareInterface
      * @param ServiceManager $serviceManager
      * @return $this
      */
-    public function setServiceManager( ServiceManager $serviceManager )
+    public function setServiceManager(ServiceManager $serviceManager)
     {
         $this->serviceManager = $serviceManager;
 
@@ -71,7 +71,7 @@ class Category implements ServiceManagerAwareInterface
      *
      * @return null|\ZfcTicketSystem\Entity\TicketCategory
      */
-    public function getCategory4Id( $categoryId )
+    public function getCategory4Id($categoryId)
     {
         /** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $repository */
         $repository = $this->getEntityManager()->getRepository($this->getEntityOptions()->getTicketCategory());
@@ -92,7 +92,7 @@ class Category implements ServiceManagerAwareInterface
     public function getEntityManager()
     {
         if (!$this->entityManager) {
-            $this->entityManager = $this->getServiceManager()->get( 'Doctrine\ORM\EntityManager' );
+            $this->entityManager = $this->getServiceManager()->get('Doctrine\ORM\EntityManager');
         }
 
         return $this->entityManager;
@@ -104,7 +104,7 @@ class Category implements ServiceManagerAwareInterface
     public function getEntityOptions()
     {
         if (!$this->entityOptions) {
-            $this->entityOptions = $this->getServiceManager()->get( 'zfcticketsystem_entry_options' );
+            $this->entityOptions = $this->getServiceManager()->get('zfcticketsystem_entry_options');
         }
 
         return $this->entityOptions;

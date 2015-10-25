@@ -17,7 +17,7 @@ class BaseController extends AbstractActionController
     protected function getTicketService()
     {
         if (!$this->ticketService) {
-            $this->ticketService = $this->getServiceLocator()->get( 'zfcticketsystem_ticketsystem_service' );
+            $this->ticketService = $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_service');
         }
 
         return $this->ticketService;
@@ -29,8 +29,8 @@ class BaseController extends AbstractActionController
     protected function getAuthService()
     {
         if (!$this->authService) {
-            $config            = $this->getServiceLocator()->get( 'Config' );
-            $this->authService = $this->getServiceLocator()->get( $config['zfc-ticket-system']['auth_service'] );
+            $config = $this->getServiceLocator()->get('Config');
+            $this->authService = $this->getServiceLocator()->get($config['zfc-ticket-system']['auth_service']);
         }
 
         return $this->authService;

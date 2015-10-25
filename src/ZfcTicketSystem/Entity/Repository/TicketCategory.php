@@ -6,26 +6,26 @@ use Doctrine\ORM\EntityRepository;
 
 class TicketCategory extends EntityRepository
 {
-	/**
-	 * @return \ZfcTicketSystem\Entity\TicketCategory[]
-	 */
-	public function getActiveCategory()
+    /**
+     * @return \ZfcTicketSystem\Entity\TicketCategory[]
+     */
+    public function getActiveCategory()
     {
-		$query = $this->createQueryBuilder('p')
-			->select('p')
-			->where('p.active = :active')
-			->setParameter('active', '1')
-			->orderBy('p.sortKey','asc')
-			->getQuery();
+        $query = $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.active = :active')
+            ->setParameter('active', '1')
+            ->orderBy('p.sortKey', 'asc')
+            ->getQuery();
 
-		return $query->getResult();
-	}
+        return $query->getResult();
+    }
 
     /**
      * @param $id
      * @return \ZfcTicketSystem\Entity\TicketCategory|null
      */
-    public function getCategory( $id )
+    public function getCategory($id)
     {
         $query = $this->createQueryBuilder('p')
             ->select('p')
@@ -51,7 +51,7 @@ class TicketCategory extends EntityRepository
      * @param $categoryId
      * @return null|\ZfcTicketSystem\Entity\TicketCategory
      */
-    public function getCategory4Id( $categoryId )
+    public function getCategory4Id($categoryId)
     {
         $query = $this->createQueryBuilder('p')
             ->select('p')

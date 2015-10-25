@@ -26,7 +26,7 @@ class TicketSubjectTest extends \PHPUnit_Framework_TestCase
     public function testId()
     {
         $entity = new TicketSubject();
-        $id = rand(0,99999);
+        $id = rand(0, 99999);
         $result = $entity->setId($id);
 
         $this->assertEquals($entity, $result);

@@ -23,67 +23,67 @@ class TicketSystem implements ServiceManagerAwareInterface
     protected $entityOptions;
 
     /**
-     * @param array         $data
+     * @param array $data
      * @param UserInterface $user
      * @return bool|TicketSubject
      */
-    public function newTicket( array $data, UserInterface $user )
+    public function newTicket(array $data, UserInterface $user)
     {
         $form = $this->getTicketSystemNewForm();
-        $form->setHydrator( new HydratorTicketSubject() );
+        $form->setHydrator(new HydratorTicketSubject());
         $class = $this->getEntityOptions()->getTicketSubject();
-        $form->bind( new $class() );
-        $form->setData( $data );
+        $form->bind(new $class());
+        $form->setData($data);
 
         if (!$form->isValid()) {
             return false;
         }
 
         /** @var TicketSubject $ticketSubject */
-        $ticketSubject  = $form->getData();
-        $ticketCategory = $this->getTicketCategory4Id( $data['categoryId'] );
+        $ticketSubject = $form->getData();
+        $ticketCategory = $this->getTicketCategory4Id($data['categoryId']);
 
         if ($ticketCategory) {
-            $ticketSubject->setTicketCategory( $ticketCategory );
+            $ticketSubject->setTicketCategory($ticketCategory);
         }
 
         $entityManager = $this->getEntityManager();
-        $ticketSubject->setUser( $this->getUser4Id( $user->getId() ) );
-        $entityManager->persist( $ticketSubject );
+        $ticketSubject->setUser($this->getUser4Id($user->getId()));
+        $entityManager->persist($ticketSubject);
         $entityManager->flush();
 
-        $this->newEntry( $data, $ticketSubject->getUser(), $ticketSubject );
+        $this->newEntry($data, $ticketSubject->getUser(), $ticketSubject);
 
         return $ticketSubject;
     }
 
     /**
-     * @param array         $data
+     * @param array $data
      * @param UserInterface $user
      * @param TicketSubject $subject
      * @return bool|\ZfcTicketSystem\Entity\TicketEntry
      */
-    public function newEntry( array $data, UserInterface $user, TicketSubject $subject )
+    public function newEntry(array $data, UserInterface $user, TicketSubject $subject)
     {
         $form = $this->getTicketSystemEntryForm();
-        $form->setHydrator( new HydratorTicketEntry() );
+        $form->setHydrator(new HydratorTicketEntry());
         $class = $this->getEntityOptions()->getTicketEntry();
-        $form->bind( new $class() );
-        $form->setData( $data );
+        $form->bind(new $class());
+        $form->setData($data);
         if (!$form->isValid()) {
             return false;
         }
         /** @var \ZfcTicketSystem\Entity\TicketEntry $ticketEntry */
         $ticketEntry = $form->getData();
-        $ticketEntry->setSubject( $subject );
-        $ticketEntry->setUser( $this->getUser4Id( $user->getId() ) );
-        $subject->addTicketEntry( $ticketEntry );
+        $ticketEntry->setSubject($subject);
+        $ticketEntry->setUser($this->getUser4Id($user->getId()));
+        $subject->addTicketEntry($ticketEntry);
 
-        $subject->setLastEdit( new \DateTime() );
+        $subject->setLastEdit(new \DateTime());
 
         $entityManager = $this->getEntityManager();
-        $entityManager->persist( $ticketEntry );
-        $entityManager->persist( $subject );
+        $entityManager->persist($ticketEntry);
+        $entityManager->persist($subject);
         $entityManager->flush();
 
         return $ticketEntry;
@@ -98,7 +98,7 @@ class TicketSystem implements ServiceManagerAwareInterface
         $ticketSubject->setType(TicketSubject::TYPE_CLOSED);
 
         $entityManager = $this->getEntityManager();
-        $entityManager->persist( $ticketSubject );
+        $entityManager->persist($ticketSubject);
         $entityManager->flush();
 
         return $ticketSubject;
@@ -106,15 +106,16 @@ class TicketSystem implements ServiceManagerAwareInterface
 
     /**
      * @param $userId
-     * @return TicketSubject[]|null
+     * @param int $limit
+     * @return null|\ZfcTicketSystem\Entity\TicketSubject[]
      */
-    public function getTickets4User( $userId )
+    public function getTickets4User($userId, $limit = 0)
     {
         $entityManager = $this->getEntityManager();
         /** @var \ZfcTicketSystem\Entity\Repository\TicketSubject $repository */
-        $repository = $entityManager->getRepository( $this->getEntityOptions()->getTicketSubject() );
+        $repository = $entityManager->getRepository($this->getEntityOptions()->getTicketSubject());
 
-        return $repository->getTicketList4UserId( $userId );
+        return $repository->getTicketList4UserId($userId, $limit);
     }
 
     /**
@@ -122,39 +123,39 @@ class TicketSystem implements ServiceManagerAwareInterface
      * @param $ticketId
      * @return TicketSubject
      */
-    public function getTicketSubject( $userId, $ticketId )
+    public function getTicketSubject($userId, $ticketId)
     {
         $entityManager = $this->getEntityManager();
         /** @var \ZfcTicketSystem\Entity\Repository\TicketSubject $repository */
-        $repository = $entityManager->getRepository( $this->getEntityOptions()->getTicketSubject() );
+        $repository = $entityManager->getRepository($this->getEntityOptions()->getTicketSubject());
 
-        return $repository->getTicket4UserId( $userId, $ticketId );
+        return $repository->getTicket4UserId($userId, $ticketId);
     }
 
     /**
      * @param $ticketId
      * @return TicketSubject
      */
-    public function getTicketSubject4Admin( $ticketId )
+    public function getTicketSubject4Admin($ticketId)
     {
         $entityManager = $this->getEntityManager();
         /** @var \ZfcTicketSystem\Entity\Repository\TicketSubject $repository */
-        $repository = $entityManager->getRepository( $this->getEntityOptions()->getTicketSubject() );
+        $repository = $entityManager->getRepository($this->getEntityOptions()->getTicketSubject());
 
-        return $repository->getTicketSubject4Admin( $ticketId );
+        return $repository->getTicketSubject4Admin($ticketId);
     }
 
     /**
      * @param $type
      * @return TicketSubject[]
      */
-    public function getTickets4Type( $type )
+    public function getTickets4Type($type)
     {
         $entityManager = $this->getEntityManager();
         /** @var \ZfcTicketSystem\Entity\Repository\TicketSubject $repository */
-        $repository = $entityManager->getRepository( $this->getEntityOptions()->getTicketSubject() );
+        $repository = $entityManager->getRepository($this->getEntityOptions()->getTicketSubject());
 
-        return $repository->getTickets4Type( $type );
+        return $repository->getTickets4Type($type);
     }
 
     /**
@@ -169,7 +170,7 @@ class TicketSystem implements ServiceManagerAwareInterface
      * @param ServiceManager $serviceManager
      * @return $this
      */
-    public function setServiceManager( ServiceManager $serviceManager )
+    public function setServiceManager(ServiceManager $serviceManager)
     {
         $this->serviceManager = $serviceManager;
 
@@ -182,7 +183,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     public function getTicketSystemNewForm()
     {
         if (!$this->ticketSystemNewForm) {
-            $this->ticketSystemNewForm = $this->getServiceManager()->get( 'zfcticketsystem_ticketsystem_new_form' );
+            $this->ticketSystemNewForm = $this->getServiceManager()->get('zfcticketsystem_ticketsystem_new_form');
         }
 
         return $this->ticketSystemNewForm;
@@ -194,7 +195,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     public function getTicketSystemEntryForm()
     {
         if (!$this->ticketSystemEntryForm) {
-            $this->ticketSystemEntryForm = $this->getServiceManager()->get( 'zfcticketsystem_ticketsystem_entry_form' );
+            $this->ticketSystemEntryForm = $this->getServiceManager()->get('zfcticketsystem_ticketsystem_entry_form');
         }
 
         return $this->ticketSystemEntryForm;
@@ -206,7 +207,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     public function getNumberOfNewTickets()
     {
         /** @var \ZfcTicketSystem\Entity\Repository\TicketSubject $repository */
-        $repository = $this->getEntityManager()->getRepository( $this->getEntityOptions()->getTicketSubject() );
+        $repository = $this->getEntityManager()->getRepository($this->getEntityOptions()->getTicketSubject());
 
         return $repository->getNumberOfNewTickets();
     }
@@ -215,24 +216,24 @@ class TicketSystem implements ServiceManagerAwareInterface
      * @param $userId
      * @return null|UserInterface
      */
-    protected function getUser4Id( $userId )
+    protected function getUser4Id($userId)
     {
         /** @var \SmallUser\Entity\Repository\User $repository */
-        $repository = $this->getEntityManager()->getRepository( $this->getEntityOptions()->getUser() );
+        $repository = $this->getEntityManager()->getRepository($this->getEntityOptions()->getUser());
 
-        return $repository->getUser4Id( $userId );
+        return $repository->getUser4Id($userId);
     }
 
     /**
      * @param $categoryId
      * @return null|\ZfcTicketSystem\Entity\TicketCategory
      */
-    protected function getTicketCategory4Id( $categoryId )
+    protected function getTicketCategory4Id($categoryId)
     {
         /** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $entityManager */
-        $entityManager = $this->getEntityManager()->getRepository( $this->getEntityOptions()->getTicketCategory() );
+        $entityManager = $this->getEntityManager()->getRepository($this->getEntityOptions()->getTicketCategory());
 
-        return $entityManager->getCategory( $categoryId );
+        return $entityManager->getCategory($categoryId);
     }
 
     /**
@@ -241,7 +242,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     public function getEntityManager()
     {
         if (!$this->entityManager) {
-            $this->entityManager = $this->getServiceManager()->get( 'Doctrine\ORM\EntityManager' );
+            $this->entityManager = $this->getServiceManager()->get('Doctrine\ORM\EntityManager');
         }
 
         return $this->entityManager;
@@ -253,7 +254,7 @@ class TicketSystem implements ServiceManagerAwareInterface
     public function getEntityOptions()
     {
         if (!$this->entityOptions) {
-            $this->entityOptions = $this->getServiceManager()->get( 'zfcticketsystem_entry_options' );
+            $this->entityOptions = $this->getServiceManager()->get('zfcticketsystem_entry_options');
         }
 
         return $this->entityOptions;
