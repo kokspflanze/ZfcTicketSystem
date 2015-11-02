@@ -90,6 +90,17 @@ class TicketSystem implements ServiceManagerAwareInterface
     }
 
     /**
+     * @param array $data
+     * @param UserInterface $user
+     * @param TicketSubject $subject
+     * @return bool|\ZfcTicketSystem\Entity\TicketEntry
+     */
+    public function newAdminEntry(array $data, UserInterface $user, TicketSubject $subject)
+    {
+        return $this->newEntry($data, $user, $subject);
+    }
+
+    /**
      * @param TicketSubject $ticketSubject
      * @return TicketSubject
      */

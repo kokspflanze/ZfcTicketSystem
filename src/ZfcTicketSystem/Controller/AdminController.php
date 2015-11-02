@@ -37,7 +37,7 @@ class AdminController extends BaseController
 
         if ($request->isPost()) {
             $ticketSubject->setType(TicketSubject::TYPE_OPEN);
-            $ticketSystem = $this->getTicketService()->newEntry(
+            $ticketSystem = $this->getTicketService()->newAdminEntry(
                 $this->params()->fromPost(),
                 $this->getAuthService()->getIdentity(),
                 $ticketSubject
