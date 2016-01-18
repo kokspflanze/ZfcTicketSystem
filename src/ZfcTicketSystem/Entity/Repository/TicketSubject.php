@@ -59,17 +59,13 @@ class TicketSubject extends EntityRepository
     }
 
     /**
-     * @param $type
+     * @param string $type
      *
      * @return \ZfcTicketSystem\Entity\TicketSubject[]
      */
     public function getTickets4Type($type)
     {
-        $query = $this->createQueryBuilder('p')
-            ->select('p')
-            ->where('p.type = :type')
-            ->setParameter('type', $type)
-            ->orderBy('p.lastEdit', 'asc')
+        $query = $this->getQueryBuilder($type)
             ->getQuery();
 
         return $query->getResult();
@@ -87,5 +83,18 @@ class TicketSubject extends EntityRepository
             ->getQuery();
 
         return $query->getSingleScalarResult();
+    }
+
+    /**
+     * @param string $type
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    protected function getQueryBuilder($type)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.type = :type')
+            ->setParameter('type', $type)
+            ->orderBy('p.lastEdit', 'asc');
     }
 } 
