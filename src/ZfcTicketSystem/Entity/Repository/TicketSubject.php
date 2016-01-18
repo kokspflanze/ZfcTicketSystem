@@ -89,7 +89,7 @@ class TicketSubject extends EntityRepository
      * @param string $type
      * @return \Doctrine\ORM\QueryBuilder
      */
-    protected function getQueryBuilder($type)
+    public function getQueryBuilder($type)
     {
         return $this->createQueryBuilder('p')
             ->select('p')
