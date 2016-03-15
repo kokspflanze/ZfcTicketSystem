@@ -27,10 +27,13 @@ class Module
         return [
             'factories' => [
                 'numberOfNewTickets' => function (AbstractPluginManager $pluginManager) {
-                    return new View\Helper\NewTicketWidget($pluginManager->getServiceLocator());
+                    /** @noinspection PhpParamsInspection */
+                    return new View\Helper\NewTicketWidget(
+                        $pluginManager->getServiceLocator()->get('zfcticketsystem_ticketsystem_service')
+                    );
                 },
-                'ticketStatus' => function (AbstractPluginManager $pluginManager) {
-                    return new View\Helper\TicketStatus($pluginManager->getServiceLocator());
+                'ticketStatus' => function () {
+                    return new View\Helper\TicketStatus();
                 },
             ]
         ];
@@ -44,12 +47,24 @@ class Module
      */
     public function getServiceConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'factories' => [
                 'zfcticketsystem_ticketsystem_new_form' => function ($sm) {
                     /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                    $form = new Form\TicketSystem($sm);
-                    $form->setInputFilter(new Form\TicketSystemFilter($sm));
+                    /** @noinspection PhpParamsInspection */
+                    $form = new Form\TicketSystem(
+                        $sm->get('Doctrine\ORM\EntityManager'),
+                        $sm->get('zfcticketsystem_entry_options')
+                    );
+
+                    /** @noinspection PhpParamsInspection */
+                    $form->setInputFilter(
+                        new Form\TicketSystemFilter(
+                            $sm->get('Doctrine\ORM\EntityManager'),
+                            $sm->get('zfcticketsystem_entry_options')
+                        )
+                    );
+
                     return $form;
                 },
                 'zfcticketsystem_ticketsystem_entry_form' => function () {
@@ -67,7 +82,7 @@ class Module
                     $config = $sm->get('Configuration');
                     return new Options\EntityOptions($config['zfc-ticket-system']['entity']);
                 }
-            ),
-        );
+            ],
+        ];
     }
 }

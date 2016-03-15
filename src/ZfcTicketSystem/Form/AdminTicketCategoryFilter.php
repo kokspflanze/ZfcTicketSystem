@@ -9,42 +9,42 @@ class AdminTicketCategoryFilter extends ProvidesEventsInputFilter
 {
     public function __construct()
     {
-        $this->add(array(
+        $this->add([
             'name' => 'subject',
             'required' => true,
-            'filters' => array(array('name' => 'StringTrim')),
-            'validators' => array(
-                array(
+            'filters' => [['name' => 'StringTrim']],
+            'validators' => [
+                [
                     'name' => 'StringLength',
-                    'options' => array(
+                    'options' => [
                         'min' => 1,
                         'max' => 200,
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'sort_key',
             'required' => false,
-            'validators' => array(
-                array(
+            'validators' => [
+                [
                     'name' => 'IsInt',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'active',
             'required' => true,
-            'validators' => array(
-                array(
+            'validators' => [
+                [
                     'name' => 'InArray',
-                    'options' => array(
-                        'haystack' => array(0, 1),
-                    ),
-                ),
-            ),
-        ));
+                    'options' => [
+                        'haystack' => [0, 1],
+                    ],
+                ],
+            ],
+        ]);
     }
 }

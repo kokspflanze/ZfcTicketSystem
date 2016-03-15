@@ -2,7 +2,7 @@
 
 namespace ZfcTicketSystem\Mapper;
 
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethods;
 use ZfcTicketSystem\Entity\TicketSubject;
 
 class HydratorTicketSubject extends ClassMethods

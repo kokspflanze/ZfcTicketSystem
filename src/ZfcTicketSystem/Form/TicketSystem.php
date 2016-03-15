@@ -2,75 +2,78 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Form\Form;
+use Doctrine\ORM\EntityManager;
 use Zend\Form\Element;
 use ZfcBase\Form\ProvidesEventsForm;
+use ZfcTicketSystem\Options\EntityOptions;
 
 class TicketSystem extends ProvidesEventsForm
 {
     /**
-     * @param ServiceLocatorInterface $serviceLocator
+     * TicketSystem constructor.
+     * @param EntityManager $entityManager
+     * @param EntityOptions $entityOptions
      */
-    public function __construct(ServiceLocatorInterface $serviceLocator)
+    public function __construct(EntityManager $entityManager, EntityOptions $entityOptions)
     {
         parent::__construct();
-        $this->add(array(
+
+        $this->add([
             'type' => 'Zend\Form\Element\Csrf',
             'name' => 'fdh456eh56ujzum45zkuik45zhrh'
-        ));
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'subject',
-            'options' => array(
+            'options' => [
                 'label' => 'Subject',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'placeholder' => 'Subject',
                 'class' => 'form-control',
                 'type' => 'text'
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'categoryId',
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-            'options' => array(
-                'object_manager' => $serviceLocator->get('Doctrine\ORM\EntityManager'),
-                'target_class' => $serviceLocator->get('zfcticketsystem_entry_options')->getTicketCategory(),
+            'options' => [
+                'object_manager' => $entityManager,
+                'target_class' => $entityOptions->getTicketCategory(),
                 'property' => 'subject',
                 'label' => 'Category',
                 'empty_option' => '-- select --',
                 'is_method' => true,
-                'find_method' => array(
+                'find_method' => [
                     'name' => 'getActiveCategory',
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'class' => 'form-control',
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'memo',
             'type' => 'Zend\Form\Element\Textarea',
-            'options' => array(
+            'options' => [
                 'label' => 'Memo',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'placeholder' => 'Memo',
                 'class' => 'form-control',
-            ),
-        ));
+            ],
+        ]);
 
         $submitElement = new Element\Button('submit');
         $submitElement
             ->setLabel('Submit')
-            ->setAttributes(array(
+            ->setAttributes([
                 'class' => 'btn btn-primary',
                 'type' => 'submit',
-            ));
+            ]);
 
-        $this->add($submitElement, array(
+        $this->add($submitElement, [
             'priority' => -100,
-        ));
+        ]);
     }
 }

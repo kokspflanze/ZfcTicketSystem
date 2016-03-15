@@ -2,9 +2,9 @@
 
 namespace ZfcTicketSystem\Entity;
 
-use SmallUser\Entity\UserInterface;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use SmallUser\Entity\UserInterface;
 
 /**
  * TicketSubject
@@ -230,7 +230,7 @@ class TicketSubject
 
     /**
      * Set ticketCategory
-     * @param TicketEntry $ticketCategory
+     * @param TicketEntry $ticketEntry
      * @return $this
      */
     public function addTicketEntry(TicketEntry $ticketEntry = null)

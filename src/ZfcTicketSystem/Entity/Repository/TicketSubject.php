@@ -43,7 +43,10 @@ class TicketSubject extends EntityRepository
     }
 
     /**
-     * @return \ZfcTicketSystem\Entity\TicketSubject|null
+     * @param $userId
+     * @param $ticketId
+     * @return null|\ZfcTicketSystem\Entity\TicketSubject
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getTicket4UserId($userId, $ticketId)
     {

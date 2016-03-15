@@ -2,76 +2,67 @@
 
 namespace ZfcTicketSystem\Form;
 
+use Doctrine\ORM\EntityManager;
 use ZfcBase\InputFilter\ProvidesEventsInputFilter;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use ZfcTicketSystem\Options\EntityOptions;
 
 class TicketSystemFilter extends ProvidesEventsInputFilter
 {
     /**
-     * @var ServiceLocatorInterface
-     */
-    protected $serviceManager;
-    /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var EntityManager
      */
     protected $entityManager;
+    /**
+     * @var EntityOptions
+     */
+    protected $entityOptions;
 
-    public function __construct(ServiceLocatorInterface $serviceManager)
+    public function __construct(EntityManager $entityManager, EntityOptions $entityOptions)
     {
-        $this->setServiceManager($serviceManager);
+        $this->entityManager = $entityManager;
+        $this->entityOptions = $entityOptions;
 
-        $this->add(array(
+        $this->add([
             'name' => 'subject',
             'required' => true,
-            'filters' => array(array('name' => 'StringTrim')),
-            'validators' => array(
-                array(
+            'filters' => [['name' => 'StringTrim']],
+            'validators' => [
+                [
                     'name' => 'StringLength',
-                    'options' => array(
+                    'options' => [
                         'min' => 3,
                         'max' => 255,
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'categoryId',
             'required' => true,
-            'validators' => array(
-                array(
+            'validators' => [
+                [
                     'name' => 'InArray',
-                    'options' => array(
+                    'options' => [
                         'haystack' => $this->getTicketCategory(),
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'memo',
             'required' => true,
-            'filters' => array(array('name' => 'StringTrim')),
-            'validators' => array(
-                array(
+            'filters' => [['name' => 'StringTrim']],
+            'validators' => [
+                [
                     'name' => 'StringLength',
-                    'options' => array(
+                    'options' => [
                         'min' => 3,
-                    ),
-                ),
-            ),
-        ));
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceManager
-     * @return $this
-     */
-    public function setServiceManager(ServiceLocatorInterface $serviceManager)
-    {
-        $this->serviceManager = $serviceManager;
-
-        return $this;
+                    ],
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -80,13 +71,13 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
     protected function getTicketCategory()
     {
         /** @var \ZfcTicketSystem\Entity\Repository\TicketCategory $ticketCategory */
-        $ticketCategory = $this->getEntityManager()->getRepository(
-            $this->getServiceManager()->get('zfcticketsystem_entry_options')->getTicketCategory()
+        $ticketCategory = $this->entityManager->getRepository(
+            $this->entityOptions->getTicketCategory()
         );
 
         $category = $ticketCategory->getActiveCategory();
 
-        $result = array();
+        $result = [];
         foreach ($category as $entry) {
             $result[] = $entry->getId();
         }
@@ -94,23 +85,5 @@ class TicketSystemFilter extends ProvidesEventsInputFilter
         return $result;
     }
 
-    /**
-     * @return ServiceLocatorInterface
-     */
-    protected function getServiceManager()
-    {
-        return $this->serviceManager;
-    }
 
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
-    {
-        if (!$this->entityManager) {
-            $this->entityManager = $this->getServiceManager()->get('Doctrine\ORM\EntityManager');
-        }
-
-        return $this->entityManager;
-    }
 } 

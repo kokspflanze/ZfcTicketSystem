@@ -2,8 +2,8 @@
 
 namespace ZfcTicketSystem\Entity;
 
-use SmallUser\Entity\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use SmallUser\Entity\UserInterface;
 
 /**
  * TicketEntry

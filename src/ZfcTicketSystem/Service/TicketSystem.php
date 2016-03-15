@@ -5,9 +5,9 @@ namespace ZfcTicketSystem\Service;
 use SmallUser\Entity\UserInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
+use ZfcTicketSystem\Entity\TicketSubject;
 use ZfcTicketSystem\Mapper\HydratorTicketEntry;
 use ZfcTicketSystem\Mapper\HydratorTicketSubject;
-use ZfcTicketSystem\Entity\TicketSubject;
 
 class TicketSystem implements ServiceManagerAwareInterface
 {

@@ -4,9 +4,10 @@
 namespace ZfcTicketSystem\View\Helper;
 
 
+use Zend\View\Helper\AbstractHelper;
 use ZfcTicketSystem\Entity\TicketSubject;
 
-class TicketStatus extends InvokerBase
+class TicketStatus extends AbstractHelper
 {
     /**
      * @param string $statusId

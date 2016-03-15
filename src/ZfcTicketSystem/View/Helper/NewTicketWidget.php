@@ -3,21 +3,30 @@
 
 namespace ZfcTicketSystem\View\Helper;
 
-class NewTicketWidget extends InvokerBase
+use Zend\View\Helper\AbstractHelper;
+use ZfcTicketSystem\Service\TicketSystem;
+
+class NewTicketWidget extends AbstractHelper
 {
+    /** @var  TicketSystem */
+    protected $ticketService;
+
+    /**
+     * NewTicketWidget constructor.
+     * @param TicketSystem $ticketService
+     */
+    public function __construct(TicketSystem $ticketService)
+    {
+        $this->ticketService = $ticketService;
+    }
+
     /**
      * @return int
      */
     public function __invoke()
     {
-        return $this->getTicketService()->getNumberOfNewTickets();
+        return $this->ticketService->getNumberOfNewTickets();
     }
 
-    /**
-     * @return \ZfcTicketSystem\Service\TicketSystem
-     */
-    protected function getTicketService()
-    {
-        return $this->getServiceLocator()->get('zfcticketsystem_ticketsystem_service');
-    }
+
 }
