@@ -13,7 +13,7 @@ class TicketStatusTest extends TestBase
     public function testInvoke()
     {
         $this->assertContains('unknown', $this->getClass()->__invoke(-1));
-        $this->assertContains('unknown', $this->getClass()->__invoke(array('sdgdsg')));
+        $this->assertContains('unknown', $this->getClass()->__invoke(['sdgdsg']));
         $this->assertNotContains('unknown', $this->getClass()->__invoke(1));
     }
 
@@ -23,8 +23,7 @@ class TicketStatusTest extends TestBase
      */
     protected function getClass($className = null)
     {
-        /** @var \Zend\ServiceManager\ServiceManagerAwareInterface $class */
-        $class = new $this->className($this->serviceManager);
+        $class = new $this->className();
 
         return $class;
     }

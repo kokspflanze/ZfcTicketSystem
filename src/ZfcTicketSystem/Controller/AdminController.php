@@ -4,7 +4,7 @@ namespace ZfcTicketSystem\Controller;
 
 use ZfcTicketSystem\Entity\TicketSubject;
 
-class AdminController extends BaseController
+class AdminController extends AbstractController
 {
     /**
      * @return array

@@ -10,9 +10,9 @@
         processIsolation="false"
         backupGlobals="false"
         syntaxCheck="true"
-        >
+>
     <php>
-        <server name='HTTP_HOST' value='' />
+        <server name='HTTP_HOST' value=''/>
         <server name="SERVER_NAME" value="http://foo.bar"/>
         <server name="SERVER_PORT" value="80"/>
         <server name="REMOTE_ADDR" value="127.1.2.3"/>

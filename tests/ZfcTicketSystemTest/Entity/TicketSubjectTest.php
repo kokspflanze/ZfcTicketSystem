@@ -6,8 +6,8 @@ namespace ZfcTicketSystemTest\Entity;
 
 use SmallUser\Entity\User;
 use ZfcTicketSystem\Entity\TicketCategory;
-use ZfcTicketSystem\Entity\TicketSubject;
 use ZfcTicketSystem\Entity\TicketEntry;
+use ZfcTicketSystem\Entity\TicketSubject;
 
 class TicketSubjectTest extends \PHPUnit_Framework_TestCase
 {

@@ -5,9 +5,8 @@ namespace ZfcTicketSystem\Controller;
 use Zend\View\Model\ViewModel;
 use ZfcTicketSystem\Entity\TicketSubject;
 
-class TicketSystemController extends BaseController
+class TicketSystemController extends AbstractController
 {
-
     /**
      * @return ViewModel
      */
