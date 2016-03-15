@@ -3,25 +3,34 @@
 
 namespace ZfcTicketSystem\Service;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\ServiceManagerAwareInterface;
+use Doctrine\ORM\EntityManager;
+use ZfcTicketSystem\Form\AdminTicketCategory;
 use ZfcTicketSystem\Mapper\HydratorTicketCategory;
+use ZfcTicketSystem\Options\EntityOptions;
 
-class Category implements ServiceManagerAwareInterface
+class Category
 {
-    /** @var ServiceManager */
-    protected $serviceManager;
-    /** @var \Doctrine\ORM\EntityManager */
+    /** @var  AdminTicketCategory */
+    protected $adminForm;
+    /** @var  EntityManager */
     protected $entityManager;
-    /** @var  \ZfcTicketSystem\Options\EntityOptions */
+    /** @var  EntityOptions */
     protected $entityOptions;
 
     /**
-     * @return ServiceManager
+     * Category constructor.
+     * @param AdminTicketCategory $adminForm
+     * @param EntityManager $entityManager
+     * @param EntityOptions $entityOptions
      */
-    public function getServiceManager()
-    {
-        return $this->serviceManager;
+    public function __construct(
+        AdminTicketCategory $adminForm,
+        EntityManager $entityManager,
+        EntityOptions $entityOptions
+    ) {
+        $this->adminForm = $adminForm;
+        $this->entityManager = $entityManager;
+        $this->entityOptions = $entityOptions;
     }
 
     /**
@@ -56,17 +65,6 @@ class Category implements ServiceManagerAwareInterface
     }
 
     /**
-     * @param ServiceManager $serviceManager
-     * @return $this
-     */
-    public function setServiceManager(ServiceManager $serviceManager)
-    {
-        $this->serviceManager = $serviceManager;
-
-        return $this;
-    }
-
-    /**
      * @param $categoryId
      *
      * @return null|\ZfcTicketSystem\Entity\TicketCategory
@@ -79,34 +77,26 @@ class Category implements ServiceManagerAwareInterface
     }
 
     /**
-     * @return \ZfcTicketSystem\Form\AdminTicketCategory
+     * @return AdminTicketCategory
      */
     public function getForm()
     {
-        return $this->getServiceManager()->get('zfcticketsystem_admin_category_form');
+        return $this->adminForm;
     }
 
     /**
-     * @return \Doctrine\ORM\EntityManager
+     * @return EntityManager
      */
     public function getEntityManager()
     {
-        if (!$this->entityManager) {
-            $this->entityManager = $this->getServiceManager()->get('Doctrine\ORM\EntityManager');
-        }
-
         return $this->entityManager;
     }
 
     /**
-     * @return \ZfcTicketSystem\Options\EntityOptions
+     * @return EntityOptions
      */
     public function getEntityOptions()
     {
-        if (!$this->entityOptions) {
-            $this->entityOptions = $this->getServiceManager()->get('zfcticketsystem_entry_options');
-        }
-
         return $this->entityOptions;
     }
 

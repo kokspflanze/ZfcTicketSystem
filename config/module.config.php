@@ -1,5 +1,7 @@
 <?php
 
+use ZfcTicketSystem\Service;
+
 return [
     'router' => [
         'routes' => [
@@ -35,9 +37,30 @@ return [
         ],
     ],
     'service_manager' => [
-        'invokables' => [
-            'zfcticketsystem_ticketsystem_service' => 'ZfcTicketSystem\Service\TicketSystem',
-            'zfcticketsystem_category_service' => 'ZfcTicketSystem\Service\Category',
+        'aliases' => [
+            'zfcticketsystem_ticketsystem_service' => Service\TicketSystem::class,
+            'zfcticketsystem_category_service' => Service\Category::class,
+        ],
+        'factories' => [
+            Service\TicketSystem::class => function($sm) {
+                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                /** @noinspection PhpParamsInspection */
+                return new Service\TicketSystem(
+                    $sm->get('Doctrine\ORM\EntityManager'),
+                    $sm->get('zfcticketsystem_ticketsystem_new_form'),
+                    $sm->get('zfcticketsystem_ticketsystem_entry_form'),
+                    $sm->get('zfcticketsystem_entry_options')
+                );
+            },
+            Service\Category::class => function($sm) {
+                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
+                /** @noinspection PhpParamsInspection */
+                return new Service\Category(
+                    $sm->get('zfcticketsystem_admin_category_form'),
+                    $sm->get('Doctrine\ORM\EntityManager'),
+                    $sm->get('zfcticketsystem_entry_options')
+                );
+            }
         ],
     ],
     'controllers' => [
