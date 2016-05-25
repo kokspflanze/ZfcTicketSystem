@@ -43,25 +43,8 @@ return [
             'zfcticketsystem_category_service' => Service\Category::class,
         ],
         'factories' => [
-            Service\TicketSystem::class => function ($sm) {
-                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                /** @noinspection PhpParamsInspection */
-                return new Service\TicketSystem(
-                    $sm->get('Doctrine\ORM\EntityManager'),
-                    $sm->get('zfcticketsystem_ticketsystem_new_form'),
-                    $sm->get('zfcticketsystem_ticketsystem_entry_form'),
-                    $sm->get('zfcticketsystem_entry_options')
-                );
-            },
-            Service\Category::class => function ($sm) {
-                /** @var $sm \Zend\ServiceManager\ServiceLocatorInterface */
-                /** @noinspection PhpParamsInspection */
-                return new Service\Category(
-                    $sm->get('zfcticketsystem_admin_category_form'),
-                    $sm->get('Doctrine\ORM\EntityManager'),
-                    $sm->get('zfcticketsystem_entry_options')
-                );
-            },
+            Service\TicketSystem::class => Service\TicketSystemFactory::class,
+            Service\Category::class => Service\CategoryFactory::class,
         ],
     ],
     'controllers' => [
@@ -70,24 +53,8 @@ return [
             'ZfcTicketSystem\Controller\Admin' => Controller\AdminController::class,
         ],
         'factories' => [
-            Controller\TicketSystemController::class => function ($sm) {
-                /** @var $sm \Zend\ServiceManager\AbstractPluginManager */
-                $config = $sm->getServiceLocator()->get('Config');
-                /** @noinspection PhpParamsInspection */
-                return new Controller\TicketSystemController(
-                    $sm->getServiceLocator()->get('zfcticketsystem_ticketsystem_service'),
-                    $sm->getServiceLocator()->get($config['zfc-ticket-system']['auth_service'])
-                );
-            },
-            Controller\AdminController::class => function ($sm) {
-                /** @var $sm \Zend\ServiceManager\AbstractPluginManager */
-                $config = $sm->getServiceLocator()->get('Config');
-                /** @noinspection PhpParamsInspection */
-                return new Controller\AdminController(
-                    $sm->getServiceLocator()->get('zfcticketsystem_ticketsystem_service'),
-                    $sm->getServiceLocator()->get($config['zfc-ticket-system']['auth_service'])
-                );
-            },
+            Controller\TicketSystemController::class => Controller\TicketSystemFactory::class,
+            Controller\AdminController::class => Controller\AdminFactory::class,
         ],
     ],
     'doctrine' => [
