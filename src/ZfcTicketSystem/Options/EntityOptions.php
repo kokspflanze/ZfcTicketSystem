@@ -1,7 +1,9 @@
 <?php
 namespace ZfcTicketSystem\Options;
 
+use SmallUser\Entity as SmallUserEntity;
 use Zend\Stdlib\AbstractOptions;
+use ZfcTicketSystem\Entity;
 
 
 class EntityOptions extends AbstractOptions
@@ -11,22 +13,22 @@ class EntityOptions extends AbstractOptions
     /**
      * @var string
      */
-    protected $ticketCategory = 'ZfcTicketSystem\Entity\TicketCategory';
+    protected $ticketCategory = Entity\TicketCategory::class;
 
     /**
      * @var string
      */
-    protected $ticketEntry = 'ZfcTicketSystem\Entity\TicketEntry';
+    protected $ticketEntry = Entity\TicketEntry::class;
 
     /**
      * @var string
      */
-    protected $ticketSubject = 'ZfcTicketSystem\Entity\TicketSubject';
+    protected $ticketSubject = Entity\TicketSubject::class;
 
     /**
      * @var string
      */
-    protected $user = 'SmallUser\Entity\User';
+    protected $user = SmallUserEntity\User::class;
 
     /**
      * @return string

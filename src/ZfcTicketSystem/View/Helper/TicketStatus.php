@@ -18,6 +18,7 @@ class TicketStatus extends AbstractHelper
         if (!is_scalar($statusId)) {
             $statusId = null;
         }
+
         $statusList = [
             TicketSubject::TYPE_NEW => 'new',
             TicketSubject::TYPE_OPEN => 'open',

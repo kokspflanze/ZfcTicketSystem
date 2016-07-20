@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ZfcTicketSystem\Service;
+namespace ZfcTicketSystem\Form;
 
 
 use Doctrine\ORM\EntityManager;
@@ -9,32 +9,40 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class CategoryFactory implements FactoryInterface
+class TicketSystemFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return Category
+     * @return TicketSystem
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /** @noinspection PhpParamsInspection */
-        return new Category(
-            $container->get('zfcticketsystem_admin_category_form'),
+        $form = new TicketSystem(
             $container->get(EntityManager::class),
             $container->get('zfcticketsystem_entry_options')
         );
+
+        /** @noinspection PhpParamsInspection */
+        $form->setInputFilter(
+            new TicketSystemFilter(
+                $container->get(EntityManager::class),
+                $container->get('zfcticketsystem_entry_options')
+            )
+        );
+
+        return $form;
     }
 
     /**
      * @param ServiceLocatorInterface $serviceLocator
-     * @return Category
+     * @return TicketSystem
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /** @noinspection PhpParamsInspection */
-        return $this($serviceLocator, Category::class);
+        return $this($serviceLocator, TicketSystem::class);
     }
 
 }

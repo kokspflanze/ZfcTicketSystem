@@ -2,9 +2,9 @@
 
 namespace ZfcTicketSystem\Form;
 
-use ZfcBase\InputFilter\ProvidesEventsInputFilter;
+use Zend\InputFilter\InputFilter;
 
-class TicketEntryFilter extends ProvidesEventsInputFilter
+class TicketEntryFilter extends InputFilter
 {
 
     public function __construct()

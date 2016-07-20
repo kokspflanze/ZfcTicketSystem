@@ -3,10 +3,10 @@
 namespace ZfcTicketSystem\Form;
 
 use Doctrine\ORM\EntityManager;
-use ZfcBase\InputFilter\ProvidesEventsInputFilter;
+use Zend\InputFilter\InputFilter;
 use ZfcTicketSystem\Options\EntityOptions;
 
-class TicketSystemFilter extends ProvidesEventsInputFilter
+class TicketSystemFilter extends InputFilter
 {
     /**
      * @var EntityManager

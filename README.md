@@ -8,9 +8,9 @@ Master
 
 edit your config, to set your AuthService
 
-	'zfc-ticket-system' => array(
+	'zfc-ticket-system' => [
 		'auth_service' => 'user_auth_service',
-	)
+	]
 	
 Your user object must have this interface "ZfcTicketSystem\Entity\UserInterface"
  

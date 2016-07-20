@@ -1,6 +1,10 @@
 <?php
 
+use Zend\ServiceManager\Factory\InvokableFactory;
 use ZfcTicketSystem\Controller;
+use ZfcTicketSystem\Form;
+use ZfcTicketSystem\Options;
+use ZfcTicketSystem\View\Helper;
 use ZfcTicketSystem\Service;
 
 return [
@@ -41,10 +45,18 @@ return [
         'aliases' => [
             'zfcticketsystem_ticketsystem_service' => Service\TicketSystem::class,
             'zfcticketsystem_category_service' => Service\Category::class,
+            'zfcticketsystem_ticketsystem_new_form' => Form\TicketSystem::class,
+            'zfcticketsystem_ticketsystem_entry_form' => Form\TicketEntry::class,
+            'zfcticketsystem_admin_category_form' => Form\AdminTicketCategory::class,
+            'zfcticketsystem_entry_options' => Options\EntityOptions::class,
         ],
         'factories' => [
             Service\TicketSystem::class => Service\TicketSystemFactory::class,
             Service\Category::class => Service\CategoryFactory::class,
+            Form\TicketSystem::class => Form\TicketSystemFactory::class,
+            Form\TicketEntry::class => Form\TicketEntryFactory::class,
+            Form\AdminTicketCategory::class => Form\AdminTicketCategoryFactory::class,
+            Options\EntityOptions::class => Options\EntityFactory::class,
         ],
     ],
     'controllers' => [
@@ -88,6 +100,16 @@ return [
             'ticket_entry' => 'ZfcTicketSystem\Entity\TicketEntry',
             'ticket_subject' => 'ZfcTicketSystem\Entity\TicketSubject',
             'user' => 'SmallUser\Entity\User'
+        ],
+    ],
+    'view_helpers' => [
+        'aliases' => [
+            'numberOfNewTickets' => Helper\NewTicketWidget::class,
+            'ticketStatus' => Helper\TicketStatus::class,
+        ],
+        'factories' => [
+            Helper\NewTicketWidget::class => Helper\NewTicketFactory::class,
+            Helper\TicketStatus::class => InvokableFactory::class,
         ],
     ],
 ];

@@ -3,10 +3,9 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Zend\Form\Element;
-use ZfcBase\Form\ProvidesEventsForm;
+use Zend\Form;
 
-class AdminTicketCategory extends ProvidesEventsForm
+class AdminTicketCategory extends Form\Form
 {
 
     public function __construct()
@@ -55,7 +54,7 @@ class AdminTicketCategory extends ProvidesEventsForm
             ],
         ]);
 
-        $submitElement = new Element\Button('submit');
+        $submitElement = new Form\Element\Button('submit');
         $submitElement
             ->setLabel('Submit')
             ->setAttributes([

@@ -3,9 +3,9 @@
 
 namespace ZfcTicketSystem\Form;
 
-use ZfcBase\InputFilter\ProvidesEventsInputFilter;
+use Zend\InputFilter\InputFilter;
 
-class AdminTicketCategoryFilter extends ProvidesEventsInputFilter
+class AdminTicketCategoryFilter extends InputFilter
 {
     public function __construct()
     {

@@ -3,11 +3,10 @@
 namespace ZfcTicketSystem\Form;
 
 use Doctrine\ORM\EntityManager;
-use Zend\Form\Element;
-use ZfcBase\Form\ProvidesEventsForm;
+use Zend\Form;
 use ZfcTicketSystem\Options\EntityOptions;
 
-class TicketSystem extends ProvidesEventsForm
+class TicketSystem extends Form\Form
 {
     /**
      * TicketSystem constructor.
@@ -64,7 +63,7 @@ class TicketSystem extends ProvidesEventsForm
             ],
         ]);
 
-        $submitElement = new Element\Button('submit');
+        $submitElement = new Form\Element\Button('submit');
         $submitElement
             ->setLabel('Submit')
             ->setAttributes([
