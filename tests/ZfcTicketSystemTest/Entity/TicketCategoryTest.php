@@ -4,9 +4,10 @@
 namespace ZfcTicketSystemTest\Entity;
 
 
+use PHPUnit\Framework\TestCase;
 use ZfcTicketSystem\Entity\TicketCategory;
 
-class TicketCategoryTest extends \PHPUnit_Framework_TestCase
+class TicketCategoryTest extends TestCase
 {
     public function testId()
     {

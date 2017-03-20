@@ -4,11 +4,12 @@
 namespace ZfcTicketSystemTest\Entity;
 
 
+use PHPUnit\Framework\TestCase;
 use SmallUser\Entity\User;
 use ZfcTicketSystem\Entity\TicketEntry;
 use ZfcTicketSystem\Entity\TicketSubject;
 
-class TicketEntryTest extends \PHPUnit_Framework_TestCase
+class TicketEntryTest extends TestCase
 {
     public function testConstructor()
     {

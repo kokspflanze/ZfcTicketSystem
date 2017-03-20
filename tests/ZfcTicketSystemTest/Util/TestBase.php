@@ -3,17 +3,12 @@
 
 namespace ZfcTicketSystemTest\Util;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class TestBase extends TestCase
 {
     /** @var  string */
     protected $className;
-
-    public function setUp()
-    {
-        parent::setUp();
-    }
 
     /**
      * @param $methodName
