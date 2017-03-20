@@ -6,7 +6,9 @@ use Zend\InputFilter\InputFilter;
 
 class TicketEntryFilter extends InputFilter
 {
-
+    /**
+     * TicketEntryFilter constructor.
+     */
     public function __construct()
     {
         $this->add([
@@ -18,6 +20,7 @@ class TicketEntryFilter extends InputFilter
                     'name' => 'StringLength',
                     'options' => [
                         'min' => 3,
+                        'max' => 65535,
                     ],
                 ],
             ],

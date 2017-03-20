@@ -59,6 +59,7 @@ class TicketSystemFilter extends InputFilter
                     'name' => 'StringLength',
                     'options' => [
                         'min' => 3,
+                        'max' => 65535,
                     ],
                 ],
             ],
