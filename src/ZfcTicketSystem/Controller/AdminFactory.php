@@ -3,11 +3,8 @@
 
 namespace ZfcTicketSystem\Controller;
 
-
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use ZfcTicketSystem\Service\TicketSystem;
 
 class AdminFactory implements FactoryInterface
@@ -26,15 +23,6 @@ class AdminFactory implements FactoryInterface
             $container->get(TicketSystem::class),
             $container->get($config['zfc-ticket-system']['auth_service'])
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface|AbstractPluginManager $serviceLocator
-     * @return AdminController
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), AdminController::class);
     }
 
 }

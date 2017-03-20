@@ -3,11 +3,9 @@
 
 namespace ZfcTicketSystem\Service;
 
-
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class CategoryFactory implements FactoryInterface
 {
@@ -25,16 +23,6 @@ class CategoryFactory implements FactoryInterface
             $container->get(EntityManager::class),
             $container->get('zfcticketsystem_entry_options')
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return Category
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        /** @noinspection PhpParamsInspection */
-        return $this($serviceLocator, Category::class);
     }
 
 }

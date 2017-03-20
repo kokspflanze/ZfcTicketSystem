@@ -3,11 +3,8 @@
 
 namespace ZfcTicketSystem\View\Helper;
 
-
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class NewTicketFactory implements FactoryInterface
 {
@@ -22,15 +19,6 @@ class NewTicketFactory implements FactoryInterface
         return new NewTicketWidget(
             $container->get('zfcticketsystem_ticketsystem_service')
         );
-    }
-
-    /**
-     * @param ServiceLocatorInterface|AbstractPluginManager $serviceLocator
-     * @return NewTicketWidget
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator->getServiceLocator(), NewTicketWidget::class);
     }
 
 }

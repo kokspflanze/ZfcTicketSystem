@@ -1,7 +1,9 @@
 <?php
 
+use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use ZfcTicketSystem\Controller;
+use ZfcTicketSystem\Entity;
 use ZfcTicketSystem\Form;
 use ZfcTicketSystem\Options;
 use ZfcTicketSystem\View\Helper;
@@ -11,7 +13,7 @@ return [
     'router' => [
         'routes' => [
             'zfc-ticketsystem' => [
-                'type' => 'segment',
+                'type' => Segment::class,
                 'options' => [
                     'route' => '/panel/ticket[-:action[-:id]].html',
                     'constraints' => [
@@ -25,7 +27,7 @@ return [
                 ],
             ],
             'zfc-ticketsystem-admin' => [
-                'type' => 'segment',
+                'type' => Segment::class,
                 'options' => [
                     'route' => '/admin/ticket[-:action[-:id]][-:type].html',
                     'constraints' => [
@@ -72,7 +74,7 @@ return [
     'doctrine' => [
         'driver' => [
             'application_entities' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [__DIR__ . '/../src/ZfcTicketSystem/Entity']
             ],
@@ -96,10 +98,10 @@ return [
     'zfc-ticket-system' => [
         'auth_service' => 'user_auth_service',
         'entity' => [
-            'ticket_category' => 'ZfcTicketSystem\Entity\TicketCategory',
-            'ticket_entry' => 'ZfcTicketSystem\Entity\TicketEntry',
-            'ticket_subject' => 'ZfcTicketSystem\Entity\TicketSubject',
-            'user' => 'SmallUser\Entity\User'
+            'ticket_category' => Entity\TicketCategory::class,
+            'ticket_entry' => Entity\TicketEntry::class,
+            'ticket_subject' => Entity\TicketSubject::class,
+            'user' => \SmallUser\Entity\User::class
         ],
     ],
     'view_helpers' => [
