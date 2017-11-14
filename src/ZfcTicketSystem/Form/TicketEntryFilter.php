@@ -2,7 +2,9 @@
 
 namespace ZfcTicketSystem\Form;
 
+use Zend\Filter;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator;
 
 class TicketEntryFilter extends InputFilter
 {
@@ -14,10 +16,12 @@ class TicketEntryFilter extends InputFilter
         $this->add([
             'name' => 'memo',
             'required' => true,
-            'filters' => [['name' => 'StringTrim']],
+            'filters' => [
+                ['name' => Filter\StringTrim::class],
+            ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name' => Validator\StringLength::class,
                     'options' => [
                         'min' => 3,
                         'max' => 65535,

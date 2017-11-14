@@ -3,7 +3,9 @@
 namespace ZfcTicketSystem\Form;
 
 use Doctrine\ORM\EntityManager;
+use Zend\Filter;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator;
 use ZfcTicketSystem\Options\EntityOptions;
 
 class TicketSystemFilter extends InputFilter
@@ -25,10 +27,12 @@ class TicketSystemFilter extends InputFilter
         $this->add([
             'name' => 'subject',
             'required' => true,
-            'filters' => [['name' => 'StringTrim']],
+            'filters' => [
+                ['name' => Filter\StringTrim::class],
+            ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name' => Validator\StringLength::class,
                     'options' => [
                         'min' => 3,
                         'max' => 255,
@@ -42,7 +46,7 @@ class TicketSystemFilter extends InputFilter
             'required' => true,
             'validators' => [
                 [
-                    'name' => 'InArray',
+                    'name' => Validator\InArray::class,
                     'options' => [
                         'haystack' => $this->getTicketCategory(),
                     ],
@@ -53,10 +57,12 @@ class TicketSystemFilter extends InputFilter
         $this->add([
             'name' => 'memo',
             'required' => true,
-            'filters' => [['name' => 'StringTrim']],
+            'filters' => [
+                ['name' => Filter\StringTrim::class],
+            ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name' => Validator\StringLength::class,
                     'options' => [
                         'min' => 3,
                         'max' => 65535,

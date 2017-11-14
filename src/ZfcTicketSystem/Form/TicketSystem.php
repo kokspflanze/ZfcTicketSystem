@@ -3,6 +3,7 @@
 namespace ZfcTicketSystem\Form;
 
 use Doctrine\ORM\EntityManager;
+use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Form;
 use ZfcTicketSystem\Options\EntityOptions;
 
@@ -18,7 +19,7 @@ class TicketSystem extends Form\Form
         parent::__construct();
 
         $this->add([
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => Form\Element\Csrf::class,
             'name' => 'fdh456eh56ujzum45zkuik45zhrh'
         ]);
 
@@ -35,7 +36,7 @@ class TicketSystem extends Form\Form
         ]);
         $this->add([
             'name' => 'categoryId',
-            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'type' => ObjectSelect::class,
             'options' => [
                 'object_manager' => $entityManager,
                 'target_class' => $entityOptions->getTicketCategory(),
@@ -53,7 +54,7 @@ class TicketSystem extends Form\Form
         ]);
         $this->add([
             'name' => 'memo',
-            'type' => 'Zend\Form\Element\Textarea',
+            'type' => Form\Element\Textarea::class,
             'options' => [
                 'label' => 'Memo',
             ],

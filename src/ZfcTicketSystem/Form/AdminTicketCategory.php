@@ -12,7 +12,7 @@ class AdminTicketCategory extends Form\Form
     {
         parent::__construct();
         $this->add([
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => Form\Element\Csrf::class,
             'name' => 'dfhs5ghrth3e4zn43ezj'
         ]);
 
@@ -40,7 +40,7 @@ class AdminTicketCategory extends Form\Form
 
         $this->add([
             'name' => 'active',
-            'type' => 'Zend\Form\Element\Select',
+            'type' => Form\Element\Select::class,
             'options' => [
                 'label' => 'Active',
                 'value_options' => [

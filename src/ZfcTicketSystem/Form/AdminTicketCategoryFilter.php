@@ -3,7 +3,10 @@
 
 namespace ZfcTicketSystem\Form;
 
+use Zend\Filter;
+use Zend\I18n\Validator\IsInt;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator;
 
 class AdminTicketCategoryFilter extends InputFilter
 {
@@ -12,10 +15,12 @@ class AdminTicketCategoryFilter extends InputFilter
         $this->add([
             'name' => 'subject',
             'required' => true,
-            'filters' => [['name' => 'StringTrim']],
+            'filters' => [
+                ['name' => Filter\StringTrim::class],
+            ],
             'validators' => [
                 [
-                    'name' => 'StringLength',
+                    'name' => Validator\StringLength::class,
                     'options' => [
                         'min' => 1,
                         'max' => 200,
@@ -29,7 +34,7 @@ class AdminTicketCategoryFilter extends InputFilter
             'required' => false,
             'validators' => [
                 [
-                    'name' => 'IsInt',
+                    'name' => IsInt::class,
                 ],
             ],
         ]);
@@ -39,7 +44,7 @@ class AdminTicketCategoryFilter extends InputFilter
             'required' => true,
             'validators' => [
                 [
-                    'name' => 'InArray',
+                    'name' => Validator\InArray::class,
                     'options' => [
                         'haystack' => [0, 1],
                     ],

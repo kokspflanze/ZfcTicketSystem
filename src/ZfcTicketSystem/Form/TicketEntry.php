@@ -11,13 +11,13 @@ class TicketEntry extends Form\Form
     {
         parent::__construct();
         $this->add([
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => Form\Element\Csrf::class,
             'name' => 'fdh456eh56ujzum45zkuik45zhrh'
         ]);
 
         $this->add([
             'name' => 'memo',
-            'type' => 'Zend\Form\Element\Textarea',
+            'type' => Form\Element\Textarea::class,
             'options' => [
                 'label' => 'Memo',
             ],
