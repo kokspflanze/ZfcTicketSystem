@@ -1,4 +1,4 @@
-<a href="<?= $this->url('zfc-ticketsystem', array('action' => 'new')) ?>" class="btn btn-primary"><i class="fa fa-plus"></i> new ticket</a>
+<a href="<?= $this->url('zfc-ticketsystem', array('action' => 'new')) ?>" class="btn btn-primary"><i class="fas fa-plus"></i> new ticket</a>
 <div class="clearfix"></div>
 <div class="table-responsive margin-top-10">
 	<table class="table table-bordered table-hover">
@@ -21,11 +21,11 @@
 				<th><?= $ticketSubject->getCreated()->format('d.m.Y H:i') ?></th>
 				<th>
 					<a href="<?= $this->url('zfc-ticketsystem', ['id' => $ticketSubject->getId(), 'action' => 'view']) ?>" class="btn btn-warning btn-sm">
-						<i class="fa fa-edit"></i> View
+						<i class="fas fa-edit"></i> View
 					</a>
 					<?php if ($ticketSubject->getType() != 2) : ?>
 						<a href="<?= $this->url('zfc-ticketsystem', ['id' => $ticketSubject->getId(), 'action' => 'close-ticket']) ?>" class="btn btn-warning btn-sm">
-							<i class="fa fa-times"></i> Close
+							<i class="fas fa-times"></i> Close
 						</a>
 					<?php endif; ?>
 				</th>
