@@ -1,16 +1,13 @@
 <?php
 
-
 namespace ZfcTicketSystem\Form;
 
 use Zend\Form;
 
 class AdminTicketCategory extends Form\Form
 {
-
-    public function __construct()
+    public function init(): void
     {
-        parent::__construct();
         $this->add([
             'type' => Form\Element\Csrf::class,
             'name' => 'dfhs5ghrth3e4zn43ezj'

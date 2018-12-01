@@ -1,12 +1,11 @@
 <?php
 
-
 namespace ZfcTicketSystem\Mapper;
 
 use Zend\Hydrator\ClassMethods;
-use ZfcTicketSystem\Entity\TicketCategory;
+use ZfcTicketSystem\Entity\TicketEntry;
 
-class HydratorTicketCategory extends ClassMethods
+class HydratorTicketEntry extends ClassMethods
 {
 
     /**
@@ -17,10 +16,10 @@ class HydratorTicketCategory extends ClassMethods
      */
     public function extract($object)
     {
-        if (!$object instanceof TicketCategory) {
-            throw new \InvalidArgumentException('$object must be an instance of TicketCategory');
+        if (!$object instanceof TicketEntry) {
+            throw new \InvalidArgumentException('$object must be an instance of TicketEntry');
         }
-        /* @var $object TicketCategory */
+        /* @var $object TicketEntry */
         $data = parent::extract($object);
 
         return $data;
@@ -30,15 +29,15 @@ class HydratorTicketCategory extends ClassMethods
      * Hydrate $object with the provided $data.
      * @param  array $data
      * @param  object $object
-     * @return TicketCategory
+     * @return TicketEntry
      * @throws \InvalidArgumentException
      */
     public function hydrate(array $data, $object)
     {
-        if (!$object instanceof TicketCategory) {
-            throw new \InvalidArgumentException('$object must be an instance of TicketCategory');
+        if (!$object instanceof TicketEntry) {
+            throw new \InvalidArgumentException('$object must be an instance of TicketEntry');
         }
 
         return parent::hydrate($data, $object);
     }
-}
+} 

@@ -2,22 +2,35 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use DoctrineModule\Form\Element\ObjectSelect;
 use Zend\Form;
 use ZfcTicketSystem\Options\EntityOptions;
 
 class TicketSystem extends Form\Form
 {
+    /** @var EntityManagerInterface */
+    protected $entityManager;
+
+    /** @var EntityOptions */
+    protected $entityOptions;
+
     /**
      * TicketSystem constructor.
-     * @param EntityManager $entityManager
-     * @param EntityOptions $entityOptions
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param EntityOptions          $entityOptions
      */
-    public function __construct(EntityManager $entityManager, EntityOptions $entityOptions)
+    public function __construct(EntityManagerInterface $entityManager, EntityOptions $entityOptions)
     {
-        parent::__construct();
+        $this->entityManager = $entityManager;
+        $this->entityOptions = $entityOptions;
 
+        parent::__construct();
+    }
+
+    public function init(): void
+    {
         $this->add([
             'type' => Form\Element\Csrf::class,
             'name' => 'fdh456eh56ujzum45zkuik45zhrh'
@@ -38,8 +51,8 @@ class TicketSystem extends Form\Form
             'name' => 'categoryId',
             'type' => ObjectSelect::class,
             'options' => [
-                'object_manager' => $entityManager,
-                'target_class' => $entityOptions->getTicketCategory(),
+                'object_manager' => $this->entityManager,
+                'target_class' => $this->entityOptions->getTicketCategory(),
                 'property' => 'subject',
                 'label' => 'Category',
                 'empty_option' => '-- select --',

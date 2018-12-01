@@ -5,7 +5,6 @@ use SmallUser\Entity as SmallUserEntity;
 use Zend\Stdlib\AbstractOptions;
 use ZfcTicketSystem\Entity;
 
-
 class EntityOptions extends AbstractOptions
 {
     protected $__strictMode__ = false;

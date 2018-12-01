@@ -9,7 +9,6 @@
         stopOnError="false"
         processIsolation="false"
         backupGlobals="false"
-        syntaxCheck="true"
 >
     <php>
         <server name='HTTP_HOST' value=''/>

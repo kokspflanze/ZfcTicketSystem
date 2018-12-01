@@ -2,24 +2,79 @@ sudo: false
 
 language: php
 
-php:
-  - 5.6
-  - 7
-  - 7.1
-  - 7.2
-  - nightly
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - vendor
 
-allow_failures:
-  - php: nightly
+env:
+  global:
+    - COMPOSER_ARGS="--no-interaction"
+    - COVERAGE_DEPS="satooshi/php-coveralls"
 
-before_script:
-  - composer selfupdate
-  - composer update
+matrix:
+  include:
+    - php: 7.1
+      env:
+        - DEPS=lowest
+    - php: 7.1
+      env:
+        - DEPS=locked
+    - php: 7.1
+      env:
+        - DEPS=latest
+    - php: 7.2
+      env:
+        - DEPS=lowest
+    - php: 7.2
+      env:
+        - DEPS=locked
+    - php: 7.2
+      env:
+        - DEPS=latest
+        - TEST_COVERAGE=true
+    - php: 7.3
+      env:
+        - DEPS=lowest
+    - php: 7.3
+      env:
+        - DEPS=locked
+    - php: 7.3
+      env:
+        - DEPS=latest
+    - php: nightly
+      env:
+        - DEPS=lowest
+    - php: nightly
+      env:
+        - DEPS=locked
+    - php: nightly
+      env:
+        - DEPS=latest
+  allow_failures:
+    - php: 7.3
+    - php: nightly
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/8d73a1cafd9bff5c96ee
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false
+
+before_install:
+  - travis_retry composer self-update
+
+install:
+  - travis_retry composer install $COMPOSER_ARGS
+  - if [[ $DEPS == 'latest' ]]; then travis_retry composer update $COMPOSER_ARGS ; fi
+  - if [[ $DEPS == 'lowest' ]]; then travis_retry composer update --prefer-lowest --prefer-stable $COMPOSER_ARGS ; fi
+  - if [[ $TEST_COVERAGE == 'true' ]]; then travis_retry composer require --dev $COMPOSER_ARGS $COVERAGE_DEPS ; fi
+  - composer show
 
 script:
-  - mkdir -p build/logs
-  # Run tests
-  - php ./vendor/bin/phpunit --configuration tests/phpunit.xml
+  - if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage ; else composer test ; fi
 
 after_script:
-  - php vendor/bin/coveralls -v
+  - if [[ $TEST_COVERAGE == 'true' ]]; then travis_retry composer upload-coverage ; fi

@@ -1,5 +1,5 @@
 composer.phar
-composer.lock
 .*
 !.gitignore
 !.travis.yml
+!.coveralls.yml

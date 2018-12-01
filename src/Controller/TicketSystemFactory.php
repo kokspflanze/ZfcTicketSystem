@@ -1,27 +1,26 @@
 <?php
 
+namespace ZfcTicketSystem\Controller;
 
-namespace ZfcTicketSystem\Service;
-
-use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
+use ZfcTicketSystem\Service\TicketSystem;
 
-class CategoryFactory implements FactoryInterface
+class TicketSystemFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return Category
+     * @return TicketSystemController
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+        $config = $container->get('config');
         /** @noinspection PhpParamsInspection */
-        return new Category(
-            $container->get('zfcticketsystem_admin_category_form'),
-            $container->get(EntityManager::class),
-            $container->get('zfcticketsystem_entry_options')
+        return new TicketSystemController(
+            $container->get(TicketSystem::class),
+            $container->get($config['zfc-ticket-system']['auth_service'])
         );
     }
 

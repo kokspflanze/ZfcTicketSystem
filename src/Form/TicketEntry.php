@@ -6,10 +6,8 @@ use Zend\Form;
 
 class TicketEntry extends Form\Form
 {
-
-    public function __construct()
+    public function init(): void
     {
-        parent::__construct();
         $this->add([
             'type' => Form\Element\Csrf::class,
             'name' => 'fdh456eh56ujzum45zkuik45zhrh'

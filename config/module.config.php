@@ -1,13 +1,10 @@
 <?php
 
+namespace ZfcTicketSystem;
+
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
-use ZfcTicketSystem\Controller;
-use ZfcTicketSystem\Entity;
-use ZfcTicketSystem\Form;
-use ZfcTicketSystem\Options;
 use ZfcTicketSystem\View\Helper;
-use ZfcTicketSystem\Service;
 
 return [
     'router' => [
@@ -21,7 +18,7 @@ return [
                         'id' => '[0-9]+',
                     ],
                     'defaults' => [
-                        'controller' => 'ZfcTicketSystem\Controller\TicketSystem',
+                        'controller' => Controller\TicketSystemController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -36,7 +33,7 @@ return [
                         'type' => '[0-9]+',
                     ],
                     'defaults' => [
-                        'controller' => 'ZfcTicketSystem\Controller\Admin',
+                        'controller' => Controller\AdminController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -47,28 +44,37 @@ return [
         'aliases' => [
             'zfcticketsystem_ticketsystem_service' => Service\TicketSystem::class,
             'zfcticketsystem_category_service' => Service\Category::class,
-            'zfcticketsystem_ticketsystem_new_form' => Form\TicketSystem::class,
-            'zfcticketsystem_ticketsystem_entry_form' => Form\TicketEntry::class,
-            'zfcticketsystem_admin_category_form' => Form\AdminTicketCategory::class,
             'zfcticketsystem_entry_options' => Options\EntityOptions::class,
         ],
         'factories' => [
             Service\TicketSystem::class => Service\TicketSystemFactory::class,
             Service\Category::class => Service\CategoryFactory::class,
-            Form\TicketSystem::class => Form\TicketSystemFactory::class,
-            Form\TicketEntry::class => Form\TicketEntryFactory::class,
-            Form\AdminTicketCategory::class => Form\AdminTicketCategoryFactory::class,
             Options\EntityOptions::class => Options\EntityFactory::class,
         ],
     ],
     'controllers' => [
-        'aliases' => [
-            'ZfcTicketSystem\Controller\TicketSystem' => Controller\TicketSystemController::class,
-            'ZfcTicketSystem\Controller\Admin' => Controller\AdminController::class,
-        ],
         'factories' => [
             Controller\TicketSystemController::class => Controller\TicketSystemFactory::class,
             Controller\AdminController::class => Controller\AdminFactory::class,
+        ],
+    ],
+    'form_elements' => [
+        'aliases' => [
+            'zfcticketsystem_ticketsystem_new_form' => Form\TicketSystem::class,
+            'zfcticketsystem_ticketsystem_entry_form' => Form\TicketEntry::class,
+            'zfcticketsystem_admin_category_form' => Form\AdminTicketCategory::class,
+        ],
+        'factories' => [
+            Form\TicketSystem::class => Form\TicketSystemFactory::class,
+            Form\TicketEntry::class => Form\TicketEntryFactory::class,
+            Form\AdminTicketCategory::class => Form\AdminTicketCategoryFactory::class,
+        ],
+    ],
+    'input_filters' => [
+        'factories' => [
+            Form\TicketSystemFilter::class => InvokableFactory::class,
+            Form\TicketEntryFilter::class => InvokableFactory::class,
+            Form\AdminTicketCategoryFilter::class => InvokableFactory::class,
         ],
     ],
     'doctrine' => [
@@ -76,7 +82,7 @@ return [
             'application_entities' => [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
-                'paths' => [__DIR__ . '/../src/ZfcTicketSystem/Entity']
+                'paths' => [__DIR__ . '/../src/Entity']
             ],
             'orm_default' => [
                 'drivers' => [

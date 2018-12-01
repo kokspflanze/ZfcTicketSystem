@@ -1,16 +1,14 @@
 <?php
 
-
 namespace ZfcTicketSystem\Form;
 
 use Zend\Filter;
-use Zend\I18n\Validator\IsInt;
 use Zend\InputFilter\InputFilter;
 use Zend\Validator;
 
-class AdminTicketCategoryFilter extends InputFilter
+class TicketSystemFilter extends InputFilter
 {
-    public function __construct()
+    public function init(): void
     {
         $this->add([
             'name' => 'subject',
@@ -22,34 +20,33 @@ class AdminTicketCategoryFilter extends InputFilter
                 [
                     'name' => Validator\StringLength::class,
                     'options' => [
-                        'min' => 1,
-                        'max' => 200,
+                        'min' => 3,
+                        'max' => 255,
                     ],
                 ],
             ],
         ]);
 
         $this->add([
-            'name' => 'sort_key',
-            'required' => false,
-            'validators' => [
-                [
-                    'name' => IsInt::class,
-                ],
-            ],
+            'name' => 'categoryId',
+            'required' => true
         ]);
 
         $this->add([
-            'name' => 'active',
+            'name' => 'memo',
             'required' => true,
+            'filters' => [
+                ['name' => Filter\StringTrim::class],
+            ],
             'validators' => [
                 [
-                    'name' => Validator\InArray::class,
+                    'name' => Validator\StringLength::class,
                     'options' => [
-                        'haystack' => [0, 1],
+                        'min' => 3,
+                        'max' => 65535,
                     ],
                 ],
             ],
         ]);
     }
-}
+} 

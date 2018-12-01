@@ -1,12 +1,10 @@
 <?php
 
-
 namespace ZfcTicketSystem\Form;
 
-
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\InputFilter\InputFilterPluginManager;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class AdminTicketCategoryFactory implements FactoryInterface
 {
@@ -19,18 +17,9 @@ class AdminTicketCategoryFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $form = new AdminTicketCategory();
-        $form->setInputFilter(new AdminTicketCategoryFilter());
+        $form->setInputFilter($container->get(InputFilterPluginManager::class)->get(AdminTicketCategoryFilter::class));
 
         return $form;
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return AdminTicketCategory
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this($serviceLocator, AdminTicketCategory::class);
     }
 
 }

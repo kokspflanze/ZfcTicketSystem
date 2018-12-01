@@ -8,10 +8,7 @@ use Zend\Validator;
 
 class TicketEntryFilter extends InputFilter
 {
-    /**
-     * TicketEntryFilter constructor.
-     */
-    public function __construct()
+    public function init(): void
     {
         $this->add([
             'name' => 'memo',

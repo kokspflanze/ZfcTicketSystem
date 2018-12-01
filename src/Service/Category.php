@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ZfcTicketSystem\Service;
 
 use Doctrine\ORM\EntityManager;

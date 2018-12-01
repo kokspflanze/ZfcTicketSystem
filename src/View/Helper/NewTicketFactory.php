@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ZfcTicketSystem\View\Helper;
 
 use Interop\Container\ContainerInterface;
