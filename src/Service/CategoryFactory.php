@@ -18,7 +18,7 @@ class CategoryFactory implements FactoryInterface
     {
         /** @noinspection PhpParamsInspection */
         return new Category(
-            $container->get('zfcticketsystem_admin_category_form'),
+            $container->get('FormElementManager')->get('zfcticketsystem_admin_category_form'),
             $container->get(EntityManager::class),
             $container->get('zfcticketsystem_entry_options')
         );

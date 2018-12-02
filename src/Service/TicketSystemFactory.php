@@ -19,8 +19,8 @@ class TicketSystemFactory implements FactoryInterface
         /** @noinspection PhpParamsInspection */
         return new TicketSystem(
             $container->get(EntityManager::class),
-            $container->get('zfcticketsystem_ticketsystem_new_form'),
-            $container->get('zfcticketsystem_ticketsystem_entry_form'),
+            $container->get('FormElementManager')->get('zfcticketsystem_ticketsystem_new_form'),
+            $container->get('FormElementManager')->get('zfcticketsystem_ticketsystem_entry_form'),
             $container->get('zfcticketsystem_entry_options')
         );
     }
