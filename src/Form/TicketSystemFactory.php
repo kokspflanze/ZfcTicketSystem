@@ -4,8 +4,8 @@ namespace ZfcTicketSystem\Form;
 
 use Doctrine\ORM\EntityManager;
 use Interop\Container\ContainerInterface;
-use Zend\InputFilter\InputFilterPluginManager;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\InputFilter\InputFilterPluginManager;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class TicketSystemFactory implements FactoryInterface
 {

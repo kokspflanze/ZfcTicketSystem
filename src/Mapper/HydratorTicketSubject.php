@@ -2,10 +2,10 @@
 
 namespace ZfcTicketSystem\Mapper;
 
-use Zend\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 use ZfcTicketSystem\Entity\TicketSubject;
 
-class HydratorTicketSubject extends ClassMethods
+class HydratorTicketSubject extends ClassMethodsHydrator
 {
 
     /**
@@ -14,7 +14,7 @@ class HydratorTicketSubject extends ClassMethods
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function extract($object)
+    public function extract($object): array
     {
         if (!$object instanceof TicketSubject) {
             throw new \InvalidArgumentException('$object must be an instance of TicketSubject');

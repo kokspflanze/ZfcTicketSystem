@@ -3,10 +3,10 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Zend\Filter;
-use Zend\I18n\Validator\IsInt;
-use Zend\InputFilter\InputFilter;
-use Zend\Validator;
+use Laminas\Filter;
+use Laminas\I18n\Validator\IsInt;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator;
 
 class AdminTicketCategoryFilter extends InputFilter
 {

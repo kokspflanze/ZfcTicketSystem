@@ -19,7 +19,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @return array|\Zend\Http\Response
+     * @return array|\Laminas\Http\Response
      */
     public function viewAction()
     {
@@ -32,7 +32,7 @@ class AdminController extends AbstractController
 
         $form = $this->getTicketService()->getTicketSystemEntryForm();
 
-        /** @var \Zend\Http\Request $request */
+        /** @var \Laminas\Http\Request $request */
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -58,7 +58,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @return \Zend\Http\Response
+     * @return \Laminas\Http\Response
      */
     public function closeTicketAction()
     {

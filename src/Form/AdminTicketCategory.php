@@ -2,7 +2,7 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Zend\Form;
+use Laminas\Form;
 
 class AdminTicketCategory extends Form\Form
 {

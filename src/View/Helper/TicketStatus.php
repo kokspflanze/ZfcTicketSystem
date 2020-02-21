@@ -2,7 +2,7 @@
 
 namespace ZfcTicketSystem\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 use ZfcTicketSystem\Entity\TicketSubject;
 
 class TicketStatus extends AbstractHelper

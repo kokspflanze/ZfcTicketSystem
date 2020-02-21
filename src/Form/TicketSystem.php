@@ -4,7 +4,7 @@ namespace ZfcTicketSystem\Form;
 
 use Doctrine\ORM\EntityManagerInterface;
 use DoctrineModule\Form\Element\ObjectSelect;
-use Zend\Form;
+use Laminas\Form;
 use ZfcTicketSystem\Options\EntityOptions;
 
 class TicketSystem extends Form\Form

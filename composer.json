@@ -29,14 +29,14 @@
     }
   ],
   "require": {
-    "php": "^7.1",
-    "zendframework/zend-servicemanager": "^3.0",
-    "zendframework/zend-mvc": " ^3.0",
-    "zendframework/zend-view": "^2.7",
-    "zendframework/zend-http": "^2.5",
-    "zendframework/zend-i18n": "^2.5",
-    "doctrine/doctrine-orm-module": "^1.0.1 || ^2.1",
-    "kokspflanze/small-user": "^2.0.0"
+    "php": "^7.2",
+    "laminas/laminas-servicemanager": "^3.0",
+    "laminas/laminas-mvc": " ^3.0",
+    "laminas/laminas-view": "^2.7",
+    "laminas/laminas-http": "^2.5",
+    "laminas/laminas-i18n": "^2.5",
+    "doctrine/doctrine-orm-module": "^3.0.2",
+    "kokspflanze/small-user": "^3.0.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.4"

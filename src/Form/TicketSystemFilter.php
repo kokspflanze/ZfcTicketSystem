@@ -2,9 +2,9 @@
 
 namespace ZfcTicketSystem\Form;
 
-use Zend\Filter;
-use Zend\InputFilter\InputFilter;
-use Zend\Validator;
+use Laminas\Filter;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator;
 
 class TicketSystemFilter extends InputFilter
 {

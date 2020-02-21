@@ -3,7 +3,7 @@
 namespace ZfcTicketSystem\Controller;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use ZfcTicketSystem\Service\TicketSystem;
 
 class TicketSystemFactory implements FactoryInterface

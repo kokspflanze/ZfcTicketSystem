@@ -2,8 +2,8 @@
 
 namespace ZfcTicketSystem\Controller;
 
-use Zend\Authentication\AuthenticationService;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\Mvc\Controller\AbstractActionController;
 use ZfcTicketSystem\Service\TicketSystem;
 
 class AbstractController extends AbstractActionController

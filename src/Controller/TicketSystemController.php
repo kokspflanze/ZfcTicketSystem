@@ -2,7 +2,7 @@
 
 namespace ZfcTicketSystem\Controller;
 
-use Zend\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 use ZfcTicketSystem\Entity\TicketSubject;
 
 class TicketSystemController extends AbstractController
@@ -21,13 +21,13 @@ class TicketSystemController extends AbstractController
     }
 
     /**
-     * @return \Zend\Http\Response|ViewModel
+     * @return \Laminas\Http\Response|ViewModel
      */
     public function newAction()
     {
         $form = $this->getTicketService()->getTicketSystemNewForm();
 
-        /** @var \Zend\Http\Request $request */
+        /** @var \Laminas\Http\Request $request */
         $request = $this->getRequest();
         if ($request->isPost()) {
             $ticketSystem = $this->getTicketService()->newTicket($this->params()->fromPost(),
@@ -43,7 +43,7 @@ class TicketSystemController extends AbstractController
     }
 
     /**
-     * @return \Zend\Http\Response|ViewModel
+     * @return \Laminas\Http\Response|ViewModel
      */
     public function viewAction()
     {
@@ -56,7 +56,7 @@ class TicketSystemController extends AbstractController
 
         $form = $this->getTicketService()->getTicketSystemEntryForm();
 
-        /** @var \Zend\Http\Request $request */
+        /** @var \Laminas\Http\Request $request */
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -85,7 +85,7 @@ class TicketSystemController extends AbstractController
     }
 
     /**
-     * @return \Zend\Http\Response
+     * @return \Laminas\Http\Response
      */
     public function closeTicketAction()
     {

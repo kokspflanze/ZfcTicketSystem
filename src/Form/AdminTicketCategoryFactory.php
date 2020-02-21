@@ -3,8 +3,8 @@
 namespace ZfcTicketSystem\Form;
 
 use Interop\Container\ContainerInterface;
-use Zend\InputFilter\InputFilterPluginManager;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\InputFilter\InputFilterPluginManager;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class AdminTicketCategoryFactory implements FactoryInterface
 {

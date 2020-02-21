@@ -2,7 +2,7 @@
 namespace ZfcTicketSystem\Options;
 
 use SmallUser\Entity as SmallUserEntity;
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 use ZfcTicketSystem\Entity;
 
 class EntityOptions extends AbstractOptions

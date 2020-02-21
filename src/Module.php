@@ -14,10 +14,10 @@ class Module
     }
 
     /**
-     * Expected to return \Zend\ServiceManager\Config object or array to
+     * Expected to return \Laminas\ServiceManager\Config object or array to
      * seed such an object.
      *
-     * @return array|\Zend\ServiceManager\Config
+     * @return array|\Laminas\ServiceManager\Config
      */
     public function getServiceConfig()
     {
