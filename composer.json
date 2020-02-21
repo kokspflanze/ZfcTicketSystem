@@ -1,12 +1,11 @@
 {
   "name": "kokspflanze/zfc-ticket-system",
-  "description": "ZendFramework TicketSystem Module",
+  "description": "Laminas TicketSystem Module",
   "type": "library",
   "keywords": [
     "framework",
+    "laminas",
     "zf",
-    "zf2",
-    "zf3",
     "twig",
     "ticketsystem"
   ],
