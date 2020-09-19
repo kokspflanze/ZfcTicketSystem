@@ -71,7 +71,7 @@ class TicketSystem
         $entityManager->persist($ticketSubject);
         $entityManager->flush();
 
-        $this->newEntry($data, $ticketSubject->getUser(), $ticketSubject);
+        $this->newUserEntry($data, $ticketSubject->getUser(), $ticketSubject);
 
         return $ticketSubject;
     }
@@ -82,30 +82,9 @@ class TicketSystem
      * @param TicketSubject $subject
      * @return bool|\ZfcTicketSystem\Entity\TicketEntry
      */
-    public function newEntry(array $data, UserInterface $user, TicketSubject $subject)
+    public function newUserEntry(array $data, UserInterface $user, TicketSubject $subject)
     {
-        $form = $this->getTicketSystemEntryForm();
-        $form->setHydrator(new HydratorTicketEntry());
-        $class = $this->getEntityOptions()->getTicketEntry();
-        $form->bind(new $class());
-        $form->setData($data);
-        if (!$form->isValid()) {
-            return false;
-        }
-        /** @var \ZfcTicketSystem\Entity\TicketEntry $ticketEntry */
-        $ticketEntry = $form->getData();
-        $ticketEntry->setSubject($subject);
-        $ticketEntry->setUser($this->getUser4Id($user->getId()));
-        $subject->addTicketEntry($ticketEntry);
-
-        $subject->setLastEdit(new \DateTime());
-
-        $entityManager = $this->getEntityManager();
-        $entityManager->persist($ticketEntry);
-        $entityManager->persist($subject);
-        $entityManager->flush();
-
-        return $ticketEntry;
+        return $this->newEntry($data, $user, $subject);
     }
 
     /**
@@ -253,6 +232,38 @@ class TicketSystem
         $entityManager = $this->getEntityManager()->getRepository($this->getEntityOptions()->getTicketCategory());
 
         return $entityManager->getCategory($categoryId);
+    }
+
+    /**
+     * @param array $data
+     * @param UserInterface $user
+     * @param TicketSubject $subject
+     * @return bool|\ZfcTicketSystem\Entity\TicketEntry
+     */
+    protected function newEntry(array $data, UserInterface $user, TicketSubject $subject)
+    {
+        $form = $this->getTicketSystemEntryForm();
+        $form->setHydrator(new HydratorTicketEntry());
+        $class = $this->getEntityOptions()->getTicketEntry();
+        $form->bind(new $class());
+        $form->setData($data);
+        if (!$form->isValid()) {
+            return false;
+        }
+        /** @var \ZfcTicketSystem\Entity\TicketEntry $ticketEntry */
+        $ticketEntry = $form->getData();
+        $ticketEntry->setSubject($subject);
+        $ticketEntry->setUser($this->getUser4Id($user->getId()));
+        $subject->addTicketEntry($ticketEntry);
+
+        $subject->setLastEdit(new \DateTime());
+
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($ticketEntry);
+        $entityManager->persist($subject);
+        $entityManager->flush();
+
+        return $ticketEntry;
     }
 
 } 
