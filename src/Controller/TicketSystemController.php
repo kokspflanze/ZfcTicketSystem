@@ -61,7 +61,7 @@ class TicketSystemController extends AbstractController
 
         if ($request->isPost()) {
             $ticketSubject->setType(TicketSubject::TYPE_NEW);
-            $ticketSystem = $this->getTicketService()->newEntry(
+            $ticketSystem = $this->getTicketService()->newUserEntry(
                 $this->params()->fromPost(),
                 $this->getAuthService()->getIdentity(),
                 $ticketSubject
