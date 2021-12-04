@@ -28,13 +28,13 @@
     }
   ],
   "require": {
-    "php": "^7.2",
+    "php": "^7.2 || ^8.0",
     "laminas/laminas-servicemanager": "^3.0",
     "laminas/laminas-mvc": " ^3.0",
     "laminas/laminas-view": "^2.7",
     "laminas/laminas-http": "^2.5",
     "laminas/laminas-i18n": "^2.5",
-    "doctrine/doctrine-orm-module": "^3.0.2",
+    "doctrine/doctrine-orm-module": "^3.0.2 || ^4.1.0",
     "kokspflanze/small-user": "^3.0.0"
   },
   "require-dev": {
